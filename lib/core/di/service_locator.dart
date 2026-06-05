@@ -10,13 +10,4 @@ Future<void> initServiceLocator() async {
   await registerCore(getIt);
   registerServices(getIt);
   registerBlocs(getIt);
-  _registerNotifications(getIt);
-}
-
-void _registerNotifications(GetIt getIt) {
-  getIt.registerLazySingleton<Logger>(
-    () => Logger(
-      printer: PrettyPrinter(methodCount: 2, colors: true, printEmojis: true),
-    ),
-  );
 }

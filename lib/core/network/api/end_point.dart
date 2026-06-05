@@ -1,27 +1,15 @@
 // import 'package:ezsouq/env/env.dart';
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
+const String BASEURLApi = "${BASEURL}api/";
+const String BASEURL = 'https://alzahraa-api.cronica-co.com/';
 
 class EndPoint {
-  static String BASEURLApi = "api/";
-  static String customerAPI = "${BASEURLApi}customer/";
-  //static String BASEURL = Env.baseUrl;
-  //static String BASEURL = 'https://test.backend.sellit-app.com/';
-  static String BASEURL = 'https://backend.sellit-app.com/';
-  static String serverClientId = "Env.clientIdRelease";
-
-  ///********************************            ********************************
-  ///******************************** Notifications ********************************
-  ///********************************             *******************************
-  static String updateFcmToken = "${BASEURLApi}customer/update/fcm-token";
-
-  ///********************************            ********************************
-  ///******************************** Feature one ********************************
-  ///********************************             *******************************
-
-  static String forImages = "${EndPoint.BASEURL}storage/";
-  static String forVideos = "${EndPoint.BASEURL}uploads/videos/";
+  static const String BASEURL = 'https://alzahraa-api.cronica-co.com/';
 
   /// ********************************            ********************************
   /// ******************************** Feature AUTH ********************************
   /// ********************************             *******************************
+  static const String login = '${BASEURLApi}mobile/v1/auth/login';
+  static const String me = '${BASEURLApi}mobile/v1/auth/me';
+  static const String logout = '${BASEURLApi}mobile/v1/auth/logout';
 }

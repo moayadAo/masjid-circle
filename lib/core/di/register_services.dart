@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Reverb / API constants — single source of truth.
@@ -14,7 +15,7 @@ const _reverbTls = true;
 /// API base URL used for `/broadcasting/auth`. Must be the same Laravel app
 /// that issued the user's Bearer token. If your test env uses a different
 /// API host (e.g. `test.backend.sellit-app.com`), change this.
-const _apiBaseUrl = 'https://backend.sellit-app.com';
+const _apiBaseUrl = 'https://alzahraa-api.cronica-co.com/';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Registration
@@ -25,6 +26,9 @@ void registerServices(GetIt getIt) {
   // getIt.registerLazySingleton<AuthService>(
   //   () => AuthServiceImpl(apiConsumer: getIt()),
   // );
+  getIt.registerLazySingleton<AuthService>(
+    () => AuthServiceImpl(apiConsumer: getIt()),
+  );
 
   // // ── Report ────────────────────────────────────────────────────────────────
   // getIt.registerLazySingleton<ReportRemote>(

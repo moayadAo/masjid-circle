@@ -46,7 +46,7 @@ class UserSession {
     _email = userEmail;
     _userId = userId;
     _phone = phone;
-    _avatarUrl = avatarUrl != null ? '${EndPoint.forImages}${avatarUrl}' : null;
+    // _avatarUrl = avatarUrl != null ? '${EndPoint.forImages}${avatarUrl}' : null;
     _address = address;
     _city = city;
     _firstName = firstName;
@@ -104,7 +104,7 @@ class UserSession {
       _hive.saveData(HiveBoxes.appBox, HiveKey.phone, phone);
     }
     if (avatarUrl != null) {
-      _avatarUrl = '${EndPoint.forImages}${avatarUrl}';
+      // _avatarUrl = '${EndPoint.forImages}${avatarUrl}';
       log('avatar url updated: ${_avatarUrl}');
       _hive.saveData(HiveBoxes.appBox, HiveKey.avatar, _avatarUrl);
     }
