@@ -4,6 +4,7 @@ class Routes {
   static const main = '/main';
   static const onboarding = '/onboarding';
   static const login = '/login';
+  static const generalRecitation = '/general-recitation';
   static const home = '/home';
   static const createAd = '/create-ad';
   static const myAds = '/my-ads';

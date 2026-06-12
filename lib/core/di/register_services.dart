@@ -2,6 +2,9 @@ import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
 
+import '../../feature/recitation/data/remote/recitation_service.dart';
+import '../../feature/recitation_form/data/remote/recitation_form_service.dart';
+
 // ═══════════════════════════════════════════════════════════════════════════
 // Reverb / API constants — single source of truth.
 // ═══════════════════════════════════════════════════════════════════════════
@@ -28,6 +31,14 @@ void registerServices(GetIt getIt) {
   // );
   getIt.registerLazySingleton<AuthService>(
     () => AuthServiceImpl(apiConsumer: getIt()),
+  );
+
+  getIt.registerLazySingleton<RecitationService>(
+        () => RecitationServiceImpl(apiConsumer: getIt()),
+  );
+
+  getIt.registerLazySingleton<RecitationFormService>(
+        () => RecitationFormServiceImpl(apiConsumer: getIt()),
   );
 
   // // ── Report ────────────────────────────────────────────────────────────────

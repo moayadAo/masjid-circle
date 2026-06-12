@@ -12,4 +12,10 @@ class EndPoint {
   static const String login = '${BASEURLApi}mobile/v1/auth/login';
   static const String me = '${BASEURLApi}mobile/v1/auth/me';
   static const String logout = '${BASEURLApi}mobile/v1/auth/logout';
+
+  /// ********************************            ********************************
+  /// ******************************** Feature Recitation ********************************
+  /// ********************************             *******************************
+  static const String studentLookup = '${BASEURLApi}mobile/v1/students/lookup';
+  static const String recitations = '${BASEURLApi}mobile/v1/recitations';
 }

@@ -4,6 +4,11 @@ import 'package:masjid/core/storage/hive_helper.dart';
 import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
 import 'package:masjid/feature/auth/presentation/cubit/auth_cubit.dart';
 
+import '../../feature/recitation/data/remote/recitation_service.dart';
+import '../../feature/recitation/presentation/cubit/recitation_cubit.dart';
+import '../../feature/recitation_form/data/remote/recitation_form_service.dart';
+import '../../feature/recitation_form/presentation/cubit/recitation_form_cubit.dart';
+
 void registerBlocs(GetIt getIt) {
   // // ── Auth ──────────────────────────────────────────────────────────────────
   // getIt.registerFactory<AuthBloc>(
@@ -16,6 +21,18 @@ void registerBlocs(GetIt getIt) {
     () => AuthCubit(
       authService: getIt<AuthService>(),
       hiveHelper: getIt<HiveHelper>(),
+    ),
+  );
+
+  getIt.registerFactory<RecitationCubit>(
+        () => RecitationCubit(
+      service: getIt<RecitationService>(),
+    ),
+  );
+
+  getIt.registerFactory<RecitationFormCubit>(
+        () => RecitationFormCubit(
+      recitationService: getIt<RecitationFormService>(),
     ),
   );
   // // ── Report ────────────────────────────────────────────────────────────────

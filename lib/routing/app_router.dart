@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masjid/feature/auth/presentation/pages/login_page.dart';
 import 'package:masjid/shared/ui/error_page.dart';
 
+import '../feature/recitation/presentation/pages/recitation_page.dart';
 import 'export_route_files.dart';
 
 class AppRouter {
@@ -16,6 +17,12 @@ class AppRouter {
         name: Routes.login,
         pageBuilder: (context, state) =>
             fadeScaleTransitionPage(state, LoginPage()),
+      ),
+      GoRoute(
+        path: Routes.generalRecitation,
+        name: Routes.generalRecitation,
+        pageBuilder: (context, state) =>
+            fadeScaleTransitionPage(state, const RecitationPage()),
       ),
     ],
 
