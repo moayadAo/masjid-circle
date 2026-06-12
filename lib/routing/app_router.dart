@@ -35,6 +35,7 @@ import 'package:masjid/feature/attendance/presentation/pages/attendance_session_
 import 'package:masjid/feature/auth/presentation/pages/login_page.dart';
 import 'package:masjid/feature/recitation/data/models/student_lookup_model.dart';
 import 'package:masjid/feature/recitation_form/presentation/pages/recitation_form_page.dart';
+import 'package:masjid/feature/splash/presentation/pages/splash_page.dart';
 import 'package:masjid/routing/export_route_files.dart';
 import 'package:masjid/shared/ui/error_page.dart';
 
@@ -47,9 +48,16 @@ class AppRouter {
 
   static final router = GoRouter(
     navigatorKey: navigatorKey,
-    initialLocation: Routes.login,
+    initialLocation: Routes.splash,
     redirect: _roleGuard,
     routes: [
+      // ── Splash ──────────────────────────────────────────────────
+      GoRoute(
+        path: Routes.splash,
+        name: Routes.splash,
+        pageBuilder: (ctx, state) => _fade(state, const SplashPage()),
+      ),
+
       // ── Auth ─────────────────────────────────────────────────
       GoRoute(
         path: Routes.login,
@@ -131,7 +139,13 @@ class AppRouter {
     final role =
         await hive.getData(HiveBoxes.appBox, HiveKey.userRole) as String?;
 
+    final isOnSplash = state.matchedLocation == Routes.splash;
     final isOnLogin = state.matchedLocation == Routes.login;
+
+    // Allow splash screen to always show
+    if (isOnSplash) {
+      return null;
+    }
 
     // Not logged in → force login
     if (token == null || token.isEmpty) {
