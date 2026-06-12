@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masjid/core/design_app/spacing_system/icon_sizes.dart';
-import 'package:masjid/core/design_app/spacing_system/radius.dart';
 import 'package:masjid/core/design_app/theme/app_colors.dart';
-import 'package:masjid/core/design_app/typography/style_app.dart';
 import 'package:masjid/core/design_app/spacing_system/spacing.dart';
 import 'package:masjid/feature/auth/presentation/cubit/auth_cubit.dart';
 import 'package:masjid/feature/auth/presentation/cubit/auth_state.dart';
@@ -27,7 +25,7 @@ class LoginFormWidget extends StatefulWidget {
 }
 
 class _LoginFormWidgetState extends State<LoginFormWidget> {
-  bool _rememberMe = false;
+  // bool _rememberMe = false;
 
   @override
   Widget build(BuildContext context) {

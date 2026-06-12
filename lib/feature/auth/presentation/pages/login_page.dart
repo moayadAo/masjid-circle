@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:masjid/core/design_app/app_toast/app_toast.dart';
 import 'package:masjid/core/design_app/spacing_system/icon_sizes.dart';
 import 'package:masjid/core/design_app/spacing_system/radius.dart';
 import 'package:masjid/core/design_app/theme/app_colors.dart';
 import 'package:masjid/core/design_app/typography/style_app.dart';
 import 'package:masjid/core/design_app/spacing_system/spacing.dart';
+import 'package:masjid/core/di/service_locator.dart';
+import 'package:masjid/core/storage/hive_boxes.dart';
+import 'package:masjid/core/storage/hive_helper.dart';
+import 'package:masjid/core/storage/hive_key.dart';
 import 'package:masjid/feature/auth/presentation/cubit/auth_cubit.dart';
 import 'package:masjid/feature/auth/presentation/cubit/auth_state.dart';
 import 'package:masjid/feature/auth/widgets/login_form_widget.dart';
 import 'package:masjid/feature/auth/widgets/login_header_widget.dart';
+import 'package:masjid/routing/app_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -30,9 +36,29 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _handleStateChanges(BuildContext context, AuthState state) {
+  Future<void> _handleStateChanges(
+    BuildContext context,
+    AuthState state,
+  ) async {
     if (state is LoginSuccessState) {
-      // TODO: navigate to home/dashboard
+      final roles = state.authData.roles;
+      final isAssistant = roles.contains('assistant_teacher');
+      final role = isAssistant ? 'assistant' : 'main';
+
+      // Persist role for router redirect on cold start
+      await getIt<HiveHelper>().saveData(
+        HiveBoxes.appBox,
+        HiveKey.userRole,
+        role,
+      );
+
+      if (!context.mounted) return;
+
+      if (isAssistant) {
+        context.go(Routes.assistantHome);
+      } else {
+        context.go(Routes.myCircles);
+      }
       // context.go('/home');
     } else if (state is LoginFailureState) {
       AppToast.error(context, state.errMessage);

@@ -1,12 +1,19 @@
 class Routes {
+  // Auth
   static const splash = '/';
-  //static const onboarding = '/onboarding';
-  static const main = '/main';
-  static const onboarding = '/onboarding';
   static const login = '/login';
-  static const home = '/home';
-  static const createAd = '/create-ad';
-  static const myAds = '/my-ads';
-  static const editAd = '/edit-ad';
-  static const pendingReviewPage = '/pendingReviewPage';
+
+  // Main Teacher
+  static const myCircles = '/my-circles';
+  static const circleDetails = '/my-circles/:circleId';
+  static const attendanceSession = '/attendance-session/:sessionId';
+
+  // Assistant Teacher
+  static const assistantHome = '/assistant-home';
+
+  // Helpers
+  static String circleDetailsPath(int circleId) => '/my-circles/$circleId';
+
+  static String attendanceSessionPath(int sessionId) =>
+      '/attendance-session/$sessionId';
 }

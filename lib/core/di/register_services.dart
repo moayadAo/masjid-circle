@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:masjid/feature/attendance/data_source/remote/attendance_service.dart';
 import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
+import 'package:masjid/feature/circles/data_source/remote/circles_service.dart';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Reverb / API constants — single source of truth.
@@ -29,29 +31,10 @@ void registerServices(GetIt getIt) {
   getIt.registerLazySingleton<AuthService>(
     () => AuthServiceImpl(apiConsumer: getIt()),
   );
-
-  // // ── Report ────────────────────────────────────────────────────────────────
-  // getIt.registerLazySingleton<ReportRemote>(
-  //   () => ReportRemoteImpl(apiConsumer: getIt()),
-  // );
-  // getIt.registerLazySingleton<PaymentRemote>(
-  //   () => PaymentRemoteImpl(apiConsumer: getIt()),
-  // );
-  // getIt.registerLazySingleton<BankInfoRemote>(
-  //   () => BankInfoRemoteImpl(apiConsumer: getIt()),
-  // );
-
-  // // ── Create Ad ─────────────────────────────────────────────────────────────
-  // getIt.registerLazySingleton<CreateAdService>(
-  //   () => CreateAdServiceImpl(apiConsumer: getIt<ApiConsumer>()),
-  // );
-
-  // // ── Home ──────────────────────────────────────────────────────────────────
-  // getIt.registerLazySingleton<AdsService>(
-  //   () => AdsServiceImpl(apiConsumer: getIt<ApiConsumer>()),
-  // );
-
-  // getIt.registerLazySingleton<FeaturedAdsService>(
-  //   () => FeaturedAdsServiceImpl(apiConsumer: getIt<ApiConsumer>()),
-  // );
+  getIt.registerLazySingleton<AttendanceService>(
+    () => AttendanceServiceImpl(apiConsumer: getIt()),
+  );
+  getIt.registerLazySingleton<CirclesService>(
+    () => CirclesServiceImpl(apiConsumer: getIt()),
+  );
 }

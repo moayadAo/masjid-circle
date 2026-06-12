@@ -4,6 +4,7 @@ class HiveKey {
   static const String userName = 'user_name';
   static const String userId = 'user_id';
   static const String email = 'email';
+  static const String userRole = 'role';
 
   // user extra info
   static const String phone = 'phone';

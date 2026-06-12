@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masjid/core/storage/hive_boxes.dart';
 import 'package:masjid/core/storage/hive_helper.dart';
+import 'package:masjid/core/storage/hive_key.dart';
 import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
 import 'package:masjid/feature/auth/presentation/cubit/auth_state.dart';
 
@@ -32,7 +33,11 @@ class AuthCubit extends Cubit<AuthState> {
       (errMessage) => emit(LoginFailureState(errMessage: errMessage)),
       (authData) async {
         // Store token securely
-        await hiveHelper.saveData(HiveBoxes.appBox, 'token', authData.token);
+        await hiveHelper.saveData(
+          HiveBoxes.appBox,
+          HiveKey.token,
+          authData.token,
+        );
         emit(LoginSuccessState(authData: authData));
       },
     );
@@ -60,7 +65,7 @@ class AuthCubit extends Cubit<AuthState> {
       (errMessage) => emit(LogoutFailureState(errMessage: errMessage)),
       (_) async {
         // Delete stored token
-        await hiveHelper.deleteData(HiveBoxes.appBox, 'token');
+        await hiveHelper.deleteData(HiveBoxes.appBox, HiveKey.token);
         emit(LogoutSuccessState());
       },
     );

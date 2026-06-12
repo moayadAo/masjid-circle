@@ -12,4 +12,11 @@ class EndPoint {
   static const String login = '${BASEURLApi}mobile/v1/auth/login';
   static const String me = '${BASEURLApi}mobile/v1/auth/me';
   static const String logout = '${BASEURLApi}mobile/v1/auth/logout';
+
+  /// ********************************           ********************************
+  /// ******************************* Feature Circles ***************************
+  /// *******************************                 *******************************
+  static const String myCircles = '${BASEURLApi}mobile/v1/my-circles';
+  static String circleStudents(int id) =>
+      '${BASEURLApi}mobile/v1/circles/$id/students';
 }
