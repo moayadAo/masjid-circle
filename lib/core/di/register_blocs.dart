@@ -5,6 +5,11 @@ import 'package:masjid/feature/attendance/presentation/cubit/attendance_detail_c
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_sessions_cubit.dart';
 import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
 import 'package:masjid/feature/auth/presentation/cubit/auth_cubit.dart';
+
+import '../../feature/recitation/data/remote/recitation_service.dart';
+import '../../feature/recitation/presentation/cubit/recitation_cubit.dart';
+import '../../feature/recitation_form/data/remote/recitation_form_service.dart';
+import '../../feature/recitation_form/presentation/cubit/recitation_form_cubit.dart';
 import 'package:masjid/feature/circles/data_source/remote/circles_service.dart';
 import 'package:masjid/feature/circles/presentation/cubit/circles_cubit.dart';
 
@@ -31,6 +36,15 @@ void registerBlocs(GetIt getIt) {
   );
   getIt.registerFactory<CirclesCubit>(
     () => CirclesCubit(circlesService: getIt<CirclesService>()),
+  );
+
+  getIt.registerFactory<RecitationCubit>(
+    () => RecitationCubit(service: getIt<RecitationService>()),
+  );
+
+  getIt.registerFactory<RecitationFormCubit>(
+    () =>
+        RecitationFormCubit(recitationService: getIt<RecitationFormService>()),
   );
   // // ── Report ────────────────────────────────────────────────────────────────
   // getIt.registerFactory<ReportBloc>(

@@ -1,0 +1,916 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name_ar": "الفاتحة",
+      "revelation_type": "meccan",
+      "verses_count": 7,
+      "start_page": 1,
+      "end_page": 1
+    },
+    {
+      "id": 2,
+      "name_ar": "البقرة",
+      "revelation_type": "medinan",
+      "verses_count": 286,
+      "start_page": 2,
+      "end_page": 49
+    },
+    {
+      "id": 3,
+      "name_ar": "آل عمران",
+      "revelation_type": "medinan",
+      "verses_count": 200,
+      "start_page": 50,
+      "end_page": 76
+    },
+    {
+      "id": 4,
+      "name_ar": "النساء",
+      "revelation_type": "medinan",
+      "verses_count": 176,
+      "start_page": 77,
+      "end_page": 106
+    },
+    {
+      "id": 5,
+      "name_ar": "المائدة",
+      "revelation_type": "medinan",
+      "verses_count": 120,
+      "start_page": 106,
+      "end_page": 127
+    },
+    {
+      "id": 6,
+      "name_ar": "الأنعام",
+      "revelation_type": "meccan",
+      "verses_count": 165,
+      "start_page": 128,
+      "end_page": 150
+    },
+    {
+      "id": 7,
+      "name_ar": "الأعراف",
+      "revelation_type": "meccan",
+      "verses_count": 206,
+      "start_page": 151,
+      "end_page": 176
+    },
+    {
+      "id": 8,
+      "name_ar": "الأنفال",
+      "revelation_type": "medinan",
+      "verses_count": 75,
+      "start_page": 177,
+      "end_page": 186
+    },
+    {
+      "id": 9,
+      "name_ar": "التوبة",
+      "revelation_type": "medinan",
+      "verses_count": 129,
+      "start_page": 187,
+      "end_page": 207
+    },
+    {
+      "id": 10,
+      "name_ar": "يونس",
+      "revelation_type": "meccan",
+      "verses_count": 109,
+      "start_page": 208,
+      "end_page": 221
+    },
+    {
+      "id": 11,
+      "name_ar": "هود",
+      "revelation_type": "meccan",
+      "verses_count": 123,
+      "start_page": 221,
+      "end_page": 235
+    },
+    {
+      "id": 12,
+      "name_ar": "يوسف",
+      "revelation_type": "meccan",
+      "verses_count": 111,
+      "start_page": 235,
+      "end_page": 248
+    },
+    {
+      "id": 13,
+      "name_ar": "الرعد",
+      "revelation_type": "medinan",
+      "verses_count": 43,
+      "start_page": 249,
+      "end_page": 255
+    },
+    {
+      "id": 14,
+      "name_ar": "إبراهيم",
+      "revelation_type": "meccan",
+      "verses_count": 52,
+      "start_page": 255,
+      "end_page": 261
+    },
+    {
+      "id": 15,
+      "name_ar": "الحجر",
+      "revelation_type": "meccan",
+      "verses_count": 99,
+      "start_page": 262,
+      "end_page": 267
+    },
+    {
+      "id": 16,
+      "name_ar": "النحل",
+      "revelation_type": "meccan",
+      "verses_count": 128,
+      "start_page": 267,
+      "end_page": 281
+    },
+    {
+      "id": 17,
+      "name_ar": "الإسراء",
+      "revelation_type": "meccan",
+      "verses_count": 111,
+      "start_page": 282,
+      "end_page": 293
+    },
+    {
+      "id": 18,
+      "name_ar": "الكهف",
+      "revelation_type": "meccan",
+      "verses_count": 110,
+      "start_page": 293,
+      "end_page": 304
+    },
+    {
+      "id": 19,
+      "name_ar": "مريم",
+      "revelation_type": "meccan",
+      "verses_count": 98,
+      "start_page": 305,
+      "end_page": 312
+    },
+    {
+      "id": 20,
+      "name_ar": "طه",
+      "revelation_type": "meccan",
+      "verses_count": 135,
+      "start_page": 312,
+      "end_page": 321
+    },
+    {
+      "id": 21,
+      "name_ar": "الأنبياء",
+      "revelation_type": "meccan",
+      "verses_count": 112,
+      "start_page": 322,
+      "end_page": 331
+    },
+    {
+      "id": 22,
+      "name_ar": "الحج",
+      "revelation_type": "medinan",
+      "verses_count": 78,
+      "start_page": 332,
+      "end_page": 341
+    },
+    {
+      "id": 23,
+      "name_ar": "المؤمنون",
+      "revelation_type": "meccan",
+      "verses_count": 118,
+      "start_page": 342,
+      "end_page": 349
+    },
+    {
+      "id": 24,
+      "name_ar": "النور",
+      "revelation_type": "medinan",
+      "verses_count": 64,
+      "start_page": 350,
+      "end_page": 359
+    },
+    {
+      "id": 25,
+      "name_ar": "الفرقان",
+      "revelation_type": "meccan",
+      "verses_count": 77,
+      "start_page": 359,
+      "end_page": 366
+    },
+    {
+      "id": 26,
+      "name_ar": "الشعراء",
+      "revelation_type": "meccan",
+      "verses_count": 227,
+      "start_page": 367,
+      "end_page": 376
+    },
+    {
+      "id": 27,
+      "name_ar": "النمل",
+      "revelation_type": "meccan",
+      "verses_count": 93,
+      "start_page": 377,
+      "end_page": 385
+    },
+    {
+      "id": 28,
+      "name_ar": "القصص",
+      "revelation_type": "meccan",
+      "verses_count": 88,
+      "start_page": 385,
+      "end_page": 396
+    },
+    {
+      "id": 29,
+      "name_ar": "العنكبوت",
+      "revelation_type": "meccan",
+      "verses_count": 69,
+      "start_page": 396,
+      "end_page": 404
+    },
+    {
+      "id": 30,
+      "name_ar": "الروم",
+      "revelation_type": "meccan",
+      "verses_count": 60,
+      "start_page": 404,
+      "end_page": 410
+    },
+    {
+      "id": 31,
+      "name_ar": "لقمان",
+      "revelation_type": "meccan",
+      "verses_count": 34,
+      "start_page": 411,
+      "end_page": 414
+    },
+    {
+      "id": 32,
+      "name_ar": "السجدة",
+      "revelation_type": "meccan",
+      "verses_count": 30,
+      "start_page": 415,
+      "end_page": 417
+    },
+    {
+      "id": 33,
+      "name_ar": "الأحزاب",
+      "revelation_type": "medinan",
+      "verses_count": 73,
+      "start_page": 418,
+      "end_page": 427
+    },
+    {
+      "id": 34,
+      "name_ar": "سبأ",
+      "revelation_type": "meccan",
+      "verses_count": 54,
+      "start_page": 428,
+      "end_page": 434
+    },
+    {
+      "id": 35,
+      "name_ar": "فاطر",
+      "revelation_type": "meccan",
+      "verses_count": 45,
+      "start_page": 434,
+      "end_page": 440
+    },
+    {
+      "id": 36,
+      "name_ar": "يس",
+      "revelation_type": "meccan",
+      "verses_count": 83,
+      "start_page": 440,
+      "end_page": 445
+    },
+    {
+      "id": 37,
+      "name_ar": "الصافات",
+      "revelation_type": "meccan",
+      "verses_count": 182,
+      "start_page": 446,
+      "end_page": 452
+    },
+    {
+      "id": 38,
+      "name_ar": "ص",
+      "revelation_type": "meccan",
+      "verses_count": 88,
+      "start_page": 453,
+      "end_page": 458
+    },
+    {
+      "id": 39,
+      "name_ar": "الزمر",
+      "revelation_type": "meccan",
+      "verses_count": 75,
+      "start_page": 458,
+      "end_page": 467
+    },
+    {
+      "id": 40,
+      "name_ar": "غافر",
+      "revelation_type": "meccan",
+      "verses_count": 85,
+      "start_page": 467,
+      "end_page": 476
+    },
+    {
+      "id": 41,
+      "name_ar": "فصلت",
+      "revelation_type": "meccan",
+      "verses_count": 54,
+      "start_page": 477,
+      "end_page": 482
+    },
+    {
+      "id": 42,
+      "name_ar": "الشورى",
+      "revelation_type": "meccan",
+      "verses_count": 53,
+      "start_page": 483,
+      "end_page": 489
+    },
+    {
+      "id": 43,
+      "name_ar": "الزخرف",
+      "revelation_type": "meccan",
+      "verses_count": 89,
+      "start_page": 489,
+      "end_page": 496
+    },
+    {
+      "id": 44,
+      "name_ar": "الدخان",
+      "revelation_type": "meccan",
+      "verses_count": 59,
+      "start_page": 496,
+      "end_page": 498
+    },
+    {
+      "id": 45,
+      "name_ar": "الجاثية",
+      "revelation_type": "meccan",
+      "verses_count": 37,
+      "start_page": 499,
+      "end_page": 502
+    },
+    {
+      "id": 46,
+      "name_ar": "الأحقاف",
+      "revelation_type": "meccan",
+      "verses_count": 35,
+      "start_page": 502,
+      "end_page": 506
+    },
+    {
+      "id": 47,
+      "name_ar": "محمد",
+      "revelation_type": "medinan",
+      "verses_count": 38,
+      "start_page": 507,
+      "end_page": 510
+    },
+    {
+      "id": 48,
+      "name_ar": "الفتح",
+      "revelation_type": "medinan",
+      "verses_count": 29,
+      "start_page": 511,
+      "end_page": 515
+    },
+    {
+      "id": 49,
+      "name_ar": "الحجرات",
+      "revelation_type": "medinan",
+      "verses_count": 18,
+      "start_page": 515,
+      "end_page": 518
+    },
+    {
+      "id": 50,
+      "name_ar": "ق",
+      "revelation_type": "meccan",
+      "verses_count": 45,
+      "start_page": 518,
+      "end_page": 520
+    },
+    {
+      "id": 51,
+      "name_ar": "الذاريات",
+      "revelation_type": "meccan",
+      "verses_count": 60,
+      "start_page": 520,
+      "end_page": 523
+    },
+    {
+      "id": 52,
+      "name_ar": "الطور",
+      "revelation_type": "meccan",
+      "verses_count": 49,
+      "start_page": 523,
+      "end_page": 526
+    },
+    {
+      "id": 53,
+      "name_ar": "النجم",
+      "revelation_type": "meccan",
+      "verses_count": 62,
+      "start_page": 526,
+      "end_page": 528
+    },
+    {
+      "id": 54,
+      "name_ar": "القمر",
+      "revelation_type": "meccan",
+      "verses_count": 55,
+      "start_page": 528,
+      "end_page": 531
+    },
+    {
+      "id": 55,
+      "name_ar": "الرحمن",
+      "revelation_type": "medinan",
+      "verses_count": 78,
+      "start_page": 531,
+      "end_page": 534
+    },
+    {
+      "id": 56,
+      "name_ar": "الواقعة",
+      "revelation_type": "meccan",
+      "verses_count": 96,
+      "start_page": 534,
+      "end_page": 537
+    },
+    {
+      "id": 57,
+      "name_ar": "الحديد",
+      "revelation_type": "medinan",
+      "verses_count": 29,
+      "start_page": 537,
+      "end_page": 541
+    },
+    {
+      "id": 58,
+      "name_ar": "المجادلة",
+      "revelation_type": "medinan",
+      "verses_count": 22,
+      "start_page": 542,
+      "end_page": 545
+    },
+    {
+      "id": 59,
+      "name_ar": "الحشر",
+      "revelation_type": "medinan",
+      "verses_count": 24,
+      "start_page": 545,
+      "end_page": 548
+    },
+    {
+      "id": 60,
+      "name_ar": "الممتحنة",
+      "revelation_type": "medinan",
+      "verses_count": 13,
+      "start_page": 549,
+      "end_page": 551
+    },
+    {
+      "id": 61,
+      "name_ar": "الصف",
+      "revelation_type": "medinan",
+      "verses_count": 14,
+      "start_page": 551,
+      "end_page": 552
+    },
+    {
+      "id": 62,
+      "name_ar": "الجمعة",
+      "revelation_type": "medinan",
+      "verses_count": 11,
+      "start_page": 553,
+      "end_page": 554
+    },
+    {
+      "id": 63,
+      "name_ar": "المنافقون",
+      "revelation_type": "medinan",
+      "verses_count": 11,
+      "start_page": 554,
+      "end_page": 555
+    },
+    {
+      "id": 64,
+      "name_ar": "التغابن",
+      "revelation_type": "medinan",
+      "verses_count": 18,
+      "start_page": 556,
+      "end_page": 557
+    },
+    {
+      "id": 65,
+      "name_ar": "الطلاق",
+      "revelation_type": "medinan",
+      "verses_count": 12,
+      "start_page": 558,
+      "end_page": 559
+    },
+    {
+      "id": 66,
+      "name_ar": "التحريم",
+      "revelation_type": "medinan",
+      "verses_count": 12,
+      "start_page": 560,
+      "end_page": 561
+    },
+    {
+      "id": 67,
+      "name_ar": "الملك",
+      "revelation_type": "meccan",
+      "verses_count": 30,
+      "start_page": 562,
+      "end_page": 564
+    },
+    {
+      "id": 68,
+      "name_ar": "القلم",
+      "revelation_type": "meccan",
+      "verses_count": 52,
+      "start_page": 564,
+      "end_page": 566
+    },
+    {
+      "id": 69,
+      "name_ar": "الحاقة",
+      "revelation_type": "meccan",
+      "verses_count": 52,
+      "start_page": 566,
+      "end_page": 568
+    },
+    {
+      "id": 70,
+      "name_ar": "المعارج",
+      "revelation_type": "meccan",
+      "verses_count": 44,
+      "start_page": 568,
+      "end_page": 570
+    },
+    {
+      "id": 71,
+      "name_ar": "نوح",
+      "revelation_type": "meccan",
+      "verses_count": 28,
+      "start_page": 570,
+      "end_page": 571
+    },
+    {
+      "id": 72,
+      "name_ar": "الجن",
+      "revelation_type": "meccan",
+      "verses_count": 28,
+      "start_page": 572,
+      "end_page": 573
+    },
+    {
+      "id": 73,
+      "name_ar": "المزمل",
+      "revelation_type": "meccan",
+      "verses_count": 20,
+      "start_page": 574,
+      "end_page": 575
+    },
+    {
+      "id": 74,
+      "name_ar": "المدثر",
+      "revelation_type": "meccan",
+      "verses_count": 56,
+      "start_page": 575,
+      "end_page": 577
+    },
+    {
+      "id": 75,
+      "name_ar": "القيامة",
+      "revelation_type": "meccan",
+      "verses_count": 40,
+      "start_page": 577,
+      "end_page": 578
+    },
+    {
+      "id": 76,
+      "name_ar": "الإنسان",
+      "revelation_type": "medinan",
+      "verses_count": 31,
+      "start_page": 578,
+      "end_page": 580
+    },
+    {
+      "id": 77,
+      "name_ar": "المرسلات",
+      "revelation_type": "meccan",
+      "verses_count": 50,
+      "start_page": 580,
+      "end_page": 581
+    },
+    {
+      "id": 78,
+      "name_ar": "النبأ",
+      "revelation_type": "meccan",
+      "verses_count": 40,
+      "start_page": 582,
+      "end_page": 583
+    },
+    {
+      "id": 79,
+      "name_ar": "النازعات",
+      "revelation_type": "meccan",
+      "verses_count": 46,
+      "start_page": 583,
+      "end_page": 584
+    },
+    {
+      "id": 80,
+      "name_ar": "عبس",
+      "revelation_type": "meccan",
+      "verses_count": 42,
+      "start_page": 585,
+      "end_page": 586
+    },
+    {
+      "id": 81,
+      "name_ar": "التكوير",
+      "revelation_type": "meccan",
+      "verses_count": 29,
+      "start_page": 586,
+      "end_page": 587
+    },
+    {
+      "id": 82,
+      "name_ar": "الإنفطار",
+      "revelation_type": "meccan",
+      "verses_count": 19,
+      "start_page": 587,
+      "end_page": 587
+    },
+    {
+      "id": 83,
+      "name_ar": "المطففين",
+      "revelation_type": "meccan",
+      "verses_count": 36,
+      "start_page": 587,
+      "end_page": 589
+    },
+    {
+      "id": 84,
+      "name_ar": "الإنشقاق",
+      "revelation_type": "meccan",
+      "verses_count": 25,
+      "start_page": 589,
+      "end_page": 590
+    },
+    {
+      "id": 85,
+      "name_ar": "البروج",
+      "revelation_type": "meccan",
+      "verses_count": 22,
+      "start_page": 590,
+      "end_page": 591
+    },
+    {
+      "id": 86,
+      "name_ar": "الطارق",
+      "revelation_type": "meccan",
+      "verses_count": 17,
+      "start_page": 591,
+      "end_page": 591
+    },
+    {
+      "id": 87,
+      "name_ar": "الأعلى",
+      "revelation_type": "meccan",
+      "verses_count": 19,
+      "start_page": 591,
+      "end_page": 592
+    },
+    {
+      "id": 88,
+      "name_ar": "الغاشية",
+      "revelation_type": "meccan",
+      "verses_count": 26,
+      "start_page": 592,
+      "end_page": 593
+    },
+    {
+      "id": 89,
+      "name_ar": "الفجر",
+      "revelation_type": "meccan",
+      "verses_count": 30,
+      "start_page": 593,
+      "end_page": 594
+    },
+    {
+      "id": 90,
+      "name_ar": "البلد",
+      "revelation_type": "meccan",
+      "verses_count": 20,
+      "start_page": 594,
+      "end_page": 595
+    },
+    {
+      "id": 91,
+      "name_ar": "الشمس",
+      "revelation_type": "meccan",
+      "verses_count": 15,
+      "start_page": 595,
+      "end_page": 595
+    },
+    {
+      "id": 92,
+      "name_ar": "الليل",
+      "revelation_type": "meccan",
+      "verses_count": 21,
+      "start_page": 595,
+      "end_page": 596
+    },
+    {
+      "id": 93,
+      "name_ar": "الضحى",
+      "revelation_type": "meccan",
+      "verses_count": 11,
+      "start_page": 596,
+      "end_page": 596
+    },
+    {
+      "id": 94,
+      "name_ar": "الشرح",
+      "revelation_type": "meccan",
+      "verses_count": 8,
+      "start_page": 596,
+      "end_page": 596
+    },
+    {
+      "id": 95,
+      "name_ar": "التين",
+      "revelation_type": "meccan",
+      "verses_count": 8,
+      "start_page": 597,
+      "end_page": 597
+    },
+    {
+      "id": 96,
+      "name_ar": "العلق",
+      "revelation_type": "meccan",
+      "verses_count": 19,
+      "start_page": 597,
+      "end_page": 597
+    },
+    {
+      "id": 97,
+      "name_ar": "القدر",
+      "revelation_type": "meccan",
+      "verses_count": 5,
+      "start_page": 598,
+      "end_page": 598
+    },
+    {
+      "id": 98,
+      "name_ar": "البينة",
+      "revelation_type": "medinan",
+      "verses_count": 8,
+      "start_page": 598,
+      "end_page": 599
+    },
+    {
+      "id": 99,
+      "name_ar": "الزلزلة",
+      "revelation_type": "medinan",
+      "verses_count": 8,
+      "start_page": 599,
+      "end_page": 599
+    },
+    {
+      "id": 100,
+      "name_ar": "العاديات",
+      "revelation_type": "meccan",
+      "verses_count": 11,
+      "start_page": 599,
+      "end_page": 600
+    },
+    {
+      "id": 101,
+      "name_ar": "القارعة",
+      "revelation_type": "meccan",
+      "verses_count": 11,
+      "start_page": 600,
+      "end_page": 600
+    },
+    {
+      "id": 102,
+      "name_ar": "التكاثر",
+      "revelation_type": "meccan",
+      "verses_count": 8,
+      "start_page": 600,
+      "end_page": 600
+    },
+    {
+      "id": 103,
+      "name_ar": "العصر",
+      "revelation_type": "meccan",
+      "verses_count": 3,
+      "start_page": 601,
+      "end_page": 601
+    },
+    {
+      "id": 104,
+      "name_ar": "الهمزة",
+      "revelation_type": "meccan",
+      "verses_count": 9,
+      "start_page": 601,
+      "end_page": 601
+    },
+    {
+      "id": 105,
+      "name_ar": "الفيل",
+      "revelation_type": "meccan",
+      "verses_count": 5,
+      "start_page": 601,
+      "end_page": 601
+    },
+    {
+      "id": 106,
+      "name_ar": "قريش",
+      "revelation_type": "meccan",
+      "verses_count": 4,
+      "start_page": 602,
+      "end_page": 602
+    },
+    {
+      "id": 107,
+      "name_ar": "الماعون",
+      "revelation_type": "meccan",
+      "verses_count": 7,
+      "start_page": 602,
+      "end_page": 602
+    },
+    {
+      "id": 108,
+      "name_ar": "الكوثر",
+      "revelation_type": "meccan",
+      "verses_count": 3,
+      "start_page": 602,
+      "end_page": 602
+    },
+    {
+      "id": 109,
+      "name_ar": "الكافرون",
+      "revelation_type": "meccan",
+      "verses_count": 6,
+      "start_page": 603,
+      "end_page": 603
+    },
+    {
+      "id": 110,
+      "name_ar": "النصر",
+      "revelation_type": "medinan",
+      "verses_count": 3,
+      "start_page": 603,
+      "end_page": 603
+    },
+    {
+      "id": 111,
+      "name_ar": "المسد",
+      "revelation_type": "meccan",
+      "verses_count": 5,
+      "start_page": 603,
+      "end_page": 603
+    },
+    {
+      "id": 112,
+      "name_ar": "الإخلاص",
+      "revelation_type": "meccan",
+      "verses_count": 4,
+      "start_page": 604,
+      "end_page": 604
+    },
+    {
+      "id": 113,
+      "name_ar": "الفلق",
+      "revelation_type": "meccan",
+      "verses_count": 5,
+      "start_page": 604,
+      "end_page": 604
+    },
+    {
+      "id": 114,
+      "name_ar": "الناس",
+      "revelation_type": "meccan",
+      "verses_count": 6,
+      "start_page": 604,
+      "end_page": 604
+    }
+  ]
+}

@@ -4,6 +4,7 @@ class Routes {
   static const login = '/login';
 
   // Main Teacher
+  static const generalRecitation = '/general-recitation';
   static const myCircles = '/my-circles';
   static const circleDetails = '/my-circles/:circleId';
   static const attendanceSession = '/attendance-session/:sessionId';

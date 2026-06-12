@@ -36,6 +36,7 @@ import 'package:masjid/feature/auth/presentation/pages/login_page.dart';
 import 'package:masjid/routing/export_route_files.dart';
 import 'package:masjid/shared/ui/error_page.dart';
 
+import '../feature/recitation/presentation/pages/recitation_page.dart';
 export 'package:go_router/go_router.dart';
 export 'routes.dart';
 
@@ -88,6 +89,12 @@ class AppRouter {
         path: Routes.assistantHome,
         name: Routes.assistantHome,
         pageBuilder: (ctx, state) => _fade(state, const AssistantHomePage()),
+      ),
+      GoRoute(
+        path: Routes.generalRecitation,
+        name: Routes.generalRecitation,
+        pageBuilder: (context, state) =>
+            fadeScaleTransitionPage(state, const RecitationPage()),
       ),
     ],
     errorBuilder: (ctx, state) =>
