@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
       if (!context.mounted) return;
 
       if (isAssistant) {
-        context.go(Routes.assistantHome);
+        context.go(Routes.generalRecitation);
       } else {
         context.go(Routes.myCircles);
       }

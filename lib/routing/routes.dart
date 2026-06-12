@@ -5,6 +5,7 @@ class Routes {
 
   // Main Teacher
   static const generalRecitation = '/general-recitation';
+  static const generalRecitationMain = '/general-recitation-main';
   static const recitationForm = '/recitation-form';
   static const myCircles = '/my-circles';
   static const circleDetails = '/my-circles/:circleId';

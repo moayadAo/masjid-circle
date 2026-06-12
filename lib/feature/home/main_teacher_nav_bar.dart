@@ -49,7 +49,7 @@ class MainTeacherNavBar extends StatelessWidget {
                   label: 'التسميع',
                   isActive: currentIndex == 1,
                   onTap: () {
-                    context.go(Routes.generalRecitation);
+                    context.go(Routes.generalRecitationMain);
                   },
                 ),
               ],

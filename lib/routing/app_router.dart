@@ -34,6 +34,7 @@ import 'package:masjid/feature/home/assistant_home_page.dart';
 import 'package:masjid/feature/attendance/presentation/pages/attendance_session_page.dart';
 import 'package:masjid/feature/auth/presentation/pages/login_page.dart';
 import 'package:masjid/feature/recitation/data/models/student_lookup_model.dart';
+import 'package:masjid/feature/recitation/presentation/pages/recitation_page_main_nav.dart';
 import 'package:masjid/feature/recitation_form/presentation/pages/recitation_form_page.dart';
 import 'package:masjid/feature/splash/presentation/pages/splash_page.dart';
 import 'package:masjid/routing/export_route_files.dart';
@@ -105,6 +106,12 @@ class AppRouter {
         name: Routes.generalRecitation,
         pageBuilder: (context, state) =>
             fadeScaleTransitionPage(state, const RecitationPage()),
+      ),
+      GoRoute(
+        path: Routes.generalRecitationMain,
+        name: Routes.generalRecitationMain,
+        pageBuilder: (context, state) =>
+            fadeScaleTransitionPage(state, const RecitationPageMainNav()),
       ),
       GoRoute(
         path: Routes.recitationForm,

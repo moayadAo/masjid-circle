@@ -10,15 +10,16 @@ import '../../../core/design_app/spacing_system/icon_sizes.dart';
 import '../../../core/design_app/spacing_system/spacing.dart';
 import '../../../core/design_app/typography/style_app.dart';
 
-class RecitationAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const RecitationAppBar({super.key});
+class RecitationAppBarMain extends StatefulWidget
+    implements PreferredSizeWidget {
+  const RecitationAppBarMain({super.key});
   @override
   Size get preferredSize => Size.fromHeight(64.h);
   @override
-  State<RecitationAppBar> createState() => _RecitationAppBarState();
+  State<RecitationAppBarMain> createState() => _RecitationAppBarMainState();
 }
 
-class _RecitationAppBarState extends State<RecitationAppBar> {
+class _RecitationAppBarMainState extends State<RecitationAppBarMain> {
   Future<void> _handleLogoutPressed() async {
     final shouldLogout = await showLogoutConfirmDialog(context);
     if (!mounted || !shouldLogout) return;
@@ -46,15 +47,14 @@ class _RecitationAppBarState extends State<RecitationAppBar> {
           textDirection: TextDirection.ltr,
           child: Row(
             children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.logout,
-                  color: AppColor.surfaceBright,
-                  size: AppIconSize.md,
-                ),
-                onPressed: _handleLogoutPressed,
-              ),
-
+              // IconButton(
+              //   icon: const Icon(
+              //     Icons.logout,
+              //     color: AppColor.surfaceBright,
+              //     size: AppIconSize.md,
+              //   ),
+              //   onPressed: _handleLogoutPressed,
+              // ),
               Expanded(
                 child: Center(
                   child: Text(

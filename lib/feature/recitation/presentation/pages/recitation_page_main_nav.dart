@@ -6,6 +6,7 @@ import 'package:masjid/core/design_app/theme/app_colors.dart';
 import 'package:masjid/core/di/service_locator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:masjid/feature/home/main_teacher_nav_bar.dart';
+import 'package:masjid/feature/recitation/widgets/recitation_app_bar_main.dart';
 
 import '../../../../core/design_app/app_toast/app_toast.dart';
 import '../../../../core/design_app/spacing_system/radius.dart';
@@ -14,15 +15,14 @@ import '../../../../routing/routes.dart';
 import '../../data/remote/recitation_service.dart';
 import '../../widgets/or_divider.dart';
 import '../../widgets/qr_scan_card.dart';
-import '../../widgets/recitation_app_bar.dart';
 import '../../widgets/recitation_header_section.dart';
 import '../../widgets/recitation_submit_button.dart';
 import '../../widgets/student_id_input_field.dart';
 import '../cubit/recitation_cubit.dart';
 import '../cubit/recitation_state.dart';
 
-class RecitationPage extends StatelessWidget {
-  const RecitationPage({super.key});
+class RecitationPageMainNav extends StatelessWidget {
+  const RecitationPageMainNav({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _RecitationViewState extends State<_RecitationView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.background,
-      appBar: const RecitationAppBar(),
+      appBar: const RecitationAppBarMain(),
       body: BlocConsumer<RecitationCubit, RecitationState>(
         listener: (context, state) {
           if (state is RecitationFailure) {
@@ -120,7 +120,7 @@ class _RecitationViewState extends State<_RecitationView> {
           );
         },
       ),
-      // bottomNavigationBar: const MainTeacherNavBar(currentIndex: 1),
+      bottomNavigationBar: const MainTeacherNavBar(currentIndex: 1),
 
       // bottomNavigationBar: BottomNavigationBar(
       //   currentIndex: _navIndex,
