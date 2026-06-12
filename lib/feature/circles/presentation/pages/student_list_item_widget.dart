@@ -58,13 +58,13 @@ class StudentListItemWidget extends StatelessWidget {
             // Status badge
             _StudentStatusBadge(status: student.status),
             const SizedBox(width: AppSpacing.sm),
-
+            //todo: add chevron for better affordance of clickability, but only when ontap on item it is handle(make get studnet details)
             // Chevron
-            const Icon(
-              Icons.chevron_right,
-              color: AppColor.outline,
-              size: AppIconSize.md,
-            ),
+            // const Icon(
+            //   Icons.chevron_right,
+            //   color: AppColor.outline,
+            //   size: AppIconSize.md,
+            // ),
           ],
         ),
       ),

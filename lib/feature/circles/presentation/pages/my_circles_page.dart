@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masjid/core/widgets/app_error_widget.dart';
-import 'package:masjid/core/widgets/app_loading_widget.dart';
+import 'package:masjid/core/widgets/logout_confirm_dialog.dart';
 import 'package:masjid/feature/circles/presentation/cubit/circles_cubit.dart';
 import 'package:masjid/feature/circles/presentation/cubit/circles_state.dart';
 import 'package:masjid/feature/circles/widgets/circle_card_widget.dart';
 import 'package:masjid/feature/home/main_teacher_nav_bar.dart';
 import 'package:masjid/routing/app_router.dart';
 import 'package:masjid/core/constant/export_theme_files.dart';
+import 'package:masjid/feature/circles/widgets/circle_card_shimmer.dart';
 
 class MyCirclesPage extends StatefulWidget {
   const MyCirclesPage({super.key});
@@ -20,6 +21,11 @@ class _MyCirclesPageState extends State<MyCirclesPage> {
   void initState() {
     super.initState();
     context.read<CirclesCubit>().getMyCircles();
+  }
+
+  Future<void> _handleLogoutPressed() async {
+    final shouldLogout = await showLogoutConfirmDialog(context);
+    if (!mounted || !shouldLogout) return;
   }
 
   @override
@@ -38,15 +44,12 @@ class _MyCirclesPageState extends State<MyCirclesPage> {
             ).copyWith(color: AppColor.primary),
           ),
           centerTitle: false,
-          //todo if i wanna trigger auth logout cubit → navigate to login
-          // actions: [
-          //   IconButton(
-          //     icon: const Icon(Icons.logout, color: AppColor.primary),
-          //     onPressed: () {
-          //       // TODO: trigger auth logout cubit → navigate to login
-          //     },
-          //   ),
-          // ],
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.logout, color: AppColor.primary),
+              onPressed: _handleLogoutPressed,
+            ),
+          ],
         ),
         body: BlocBuilder<CirclesCubit, CirclesState>(
           buildWhen: (_, state) =>
@@ -55,7 +58,7 @@ class _MyCirclesPageState extends State<MyCirclesPage> {
               state is GetCirclesFailureState,
           builder: (context, state) {
             if (state is GetCirclesLoadingState) {
-              return const AppLoadingWidget();
+              return const CircleListShimmer();
             }
             if (state is GetCirclesFailureState) {
               return AppErrorWidget(
@@ -74,16 +77,19 @@ class _MyCirclesPageState extends State<MyCirclesPage> {
                   ),
                 );
               }
-              return ListView.separated(
-                padding: const EdgeInsets.all(AppSpacing.md),
-                itemCount: state.circles.length,
-                separatorBuilder: (_, __) =>
-                    const SizedBox(height: AppSpacing.md),
-                itemBuilder: (_, i) => CircleCardWidget(
-                  circle: state.circles[i],
-                  onTap: () => context.push(
-                    Routes.circleDetailsPath(state.circles[i].id),
-                    extra: state.circles[i].name,
+              return RefreshIndicator(
+                onRefresh: () => context.read<CirclesCubit>().getMyCircles(),
+                child: ListView.separated(
+                  padding: const EdgeInsets.all(AppSpacing.md),
+                  itemCount: state.circles.length,
+                  separatorBuilder: (_, __) =>
+                      const SizedBox(height: AppSpacing.md),
+                  itemBuilder: (_, i) => CircleCardWidget(
+                    circle: state.circles[i],
+                    onTap: () => context.push(
+                      Routes.circleDetailsPath(state.circles[i].id),
+                      extra: state.circles[i].name,
+                    ),
                   ),
                 ),
               );

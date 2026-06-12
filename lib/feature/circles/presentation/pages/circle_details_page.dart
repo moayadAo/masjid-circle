@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:masjid/core/constant/assets_manager.dart';
 import 'package:masjid/core/widgets/app_error_widget.dart';
 import 'package:masjid/core/widgets/app_loading_widget.dart';
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_sessions_cubit.dart';
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_sessions_state.dart';
 import 'package:masjid/feature/attendance/widgets/add_session_bottom_sheet.dart';
+import 'package:masjid/feature/attendance/widgets/attendance_session_card_shimmer.dart';
 import 'package:masjid/feature/attendance/widgets/attendance_session_card_widget.dart';
 import 'package:masjid/feature/circles/presentation/cubit/circles_cubit.dart';
 import 'package:masjid/feature/circles/presentation/cubit/circles_state.dart';
 import 'package:masjid/feature/circles/presentation/pages/student_list_item_widget.dart';
+import 'package:masjid/feature/circles/widgets/student_list_item_shimmer.dart';
 import 'package:masjid/routing/app_router.dart';
 import 'package:masjid/core/constant/export_theme_files.dart';
 
@@ -88,7 +91,7 @@ class _CircleDetailsPageState extends State<CircleDetailsPage>
           backgroundColor: AppColor.surfaceContainerLowest,
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_forward, color: AppColor.primary),
+            icon: const Icon(Icons.arrow_back, color: AppColor.primary),
             onPressed: () => context.pop(),
           ),
           title: Text(
@@ -97,15 +100,6 @@ class _CircleDetailsPageState extends State<CircleDetailsPage>
               context,
             ).copyWith(color: AppColor.primary),
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.settings_outlined,
-                color: AppColor.primary,
-              ),
-              onPressed: () {},
-            ),
-          ],
         ),
         body: Column(
           children: [
@@ -168,8 +162,8 @@ class _HeroBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.network(
-          'https://lh3.googleusercontent.com/aida-public/AB6AXuAOm51oFKAsPbsbwHyt2flsNU5uCNbQhAA569whinnqL-4BS6nFgRFj8LdZfCT0FJqpunMnKOAZCpdP9kyRv_bT-AHbc76H64_3rcfxnpV6XLCljHtJXpRaxpvm872OoF4NJ2i8tPk-szwWLpJeHQZb4oFhNk2YT_m9lXzdwhHGPDSnZ6t3ATSqyosFDmxR_ZlayEiwyp9DF0KJ13rCMDCbh-TBWvrP7IPsi-K6AM5AY18CpR8QeOZizlRCv8-Y5n_A-Si7zkqwPA',
+        Image.asset(
+          AssetsManager.heroImageCircleDetails,
           height: 160,
           width: double.infinity,
           fit: BoxFit.cover,
@@ -230,7 +224,7 @@ class _AttendanceSessionsTab extends StatelessWidget {
           state is AttendanceSessionsLoadMoreState,
       builder: (context, state) {
         if (state is AttendanceSessionsLoadingState) {
-          return const AppLoadingWidget();
+          return const AttendanceSessionListShimmer();
         }
         if (state is AttendanceSessionsFailureState) {
           return AppErrorWidget(
@@ -326,7 +320,7 @@ class _StudentsTab extends StatelessWidget {
           state is GetStudentsFailureState,
       builder: (context, state) {
         if (state is GetStudentsLoadingState) {
-          return const AppLoadingWidget();
+          return const StudentListShimmer();
         }
         if (state is GetStudentsFailureState) {
           return AppErrorWidget(

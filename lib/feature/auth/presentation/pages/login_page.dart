@@ -41,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
     AuthState state,
   ) async {
     if (state is LoginSuccessState) {
+      AppToast.success(context, 'تم تسجيل الدخول بنجاح');
       final roles = state.authData.roles;
       final isAssistant = roles.contains('assistant_teacher');
       final role = isAssistant ? 'assistant' : 'main';

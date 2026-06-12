@@ -7,6 +7,7 @@ import 'package:masjid/feature/attendance/presentation/cubit/attendance_detail_c
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_detail_state.dart';
 import 'package:masjid/feature/attendance/widgets/attendance_header_widget.dart';
 import 'package:masjid/feature/attendance/widgets/attendance_record_row_widget.dart';
+import 'package:masjid/feature/attendance/widgets/attendance_session_page_shimmer.dart';
 import 'package:masjid/routing/app_router.dart';
 import 'package:masjid/core/constant/export_theme_files.dart';
 
@@ -52,7 +53,7 @@ class _AttendanceSessionPageState extends State<AttendanceSessionPage> {
           backgroundColor: AppColor.surfaceContainerLowest,
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_forward, color: AppColor.primary),
+            icon: const Icon(Icons.arrow_back, color: AppColor.primary),
             onPressed: () => context.pop(),
           ),
           title: Text(
@@ -61,48 +62,19 @@ class _AttendanceSessionPageState extends State<AttendanceSessionPage> {
               context,
             ).copyWith(color: AppColor.primary),
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.settings_outlined,
-                color: AppColor.primary,
-              ),
-              onPressed: () {},
-            ),
-          ],
         ),
         body: BlocConsumer<AttendanceDetailCubit, AttendanceDetailState>(
           listener: (context, state) {
             if (state is SubmitRecordsSuccessState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    'تم حفظ سجل الحضور بنجاح',
-                    style: AppTextStyle.bodyMd(
-                      context,
-                    ).copyWith(color: AppColor.onPrimary),
-                  ),
-                  backgroundColor: AppColor.primaryContainer,
-                  behavior: SnackBarBehavior.floating,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppRadius.md),
-                  ),
-                ),
-              );
+              AppToast.success(context, 'تم حفظ سجل الحضور بنجاح');
             }
             if (state is SubmitRecordsFailureState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.errMessage),
-                  backgroundColor: Colors.red.shade700,
-                  behavior: SnackBarBehavior.floating,
-                ),
-              );
+              AppToast.error(context, state.errMessage);
             }
           },
           builder: (context, state) {
             if (state is LoadSessionLoadingState) {
-              return const AppLoadingWidget();
+              return const AttendanceSessionPageShimmer();
             }
             if (state is LoadSessionFailureState) {
               return AppErrorWidget(

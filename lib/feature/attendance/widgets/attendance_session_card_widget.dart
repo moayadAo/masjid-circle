@@ -114,13 +114,14 @@ class AttendanceSessionCardWidget extends StatelessWidget {
                     text: session.openedBy.name,
                   ),
                 ),
-                Expanded(
-                  child: _MetaItem(
-                    icon: Icons.groups_outlined,
-                    text:
-                        '${session.recordsCount ?? session.records.length} طلاب',
-                  ),
-                ),
+                //! add it when the info of number of student we are own
+                // Expanded(
+                //   child: _MetaItem(
+                //     icon: Icons.groups_outlined,
+                //     text:
+                //         '${session.recordsCount ?? session.records.length} طلاب',
+                //   ),
+                // ),
               ],
             ),
 

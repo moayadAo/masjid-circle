@@ -112,11 +112,11 @@ class AppRouter {
     if (token == null || token.isEmpty) {
       return isOnLogin ? null : Routes.login;
     }
-
+    //! REMOVE COMMENT
     // Already logged in and on login page → redirect by role
-    if (isOnLogin) {
-      return _homeByRole(role);
-    }
+    // if (isOnLogin) {
+    //   return _homeByRole(role);
+    // }
 
     return null; // allow navigation
   }
