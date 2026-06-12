@@ -1,6 +1,7 @@
 // surah_local_service.dart
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:masjid/core/constant/assets_manager.dart';
 
 import '../models/surah_model.dart';
 
@@ -17,7 +18,7 @@ abstract class SurahLocalService {
 }
 
 class SurahLocalServiceImpl implements SurahLocalService {
-  static const String _assetPath = 'assets/data/surahs.json';
+  static const String _assetPath = AssetsManager.surahJsonData;
 
   List<SurahModel>? _cache;
 
@@ -26,7 +27,7 @@ class SurahLocalServiceImpl implements SurahLocalService {
     if (_cache != null) return _cache!;
 
     final raw = await rootBundle.loadString(_assetPath);
-    final list = jsonDecode(raw) as List<dynamic>;
+    final list = jsonDecode(raw)['data'] as List<dynamic>;
 
     _cache = list
         .map((e) => SurahModel.fromJson(e as Map<String, dynamic>))

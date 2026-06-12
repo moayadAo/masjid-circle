@@ -33,6 +33,8 @@ import 'package:masjid/feature/circles/presentation/pages/my_circles_page.dart';
 import 'package:masjid/feature/home/assistant_home_page.dart';
 import 'package:masjid/feature/attendance/presentation/pages/attendance_session_page.dart';
 import 'package:masjid/feature/auth/presentation/pages/login_page.dart';
+import 'package:masjid/feature/recitation/data/models/student_lookup_model.dart';
+import 'package:masjid/feature/recitation_form/presentation/pages/recitation_form_page.dart';
 import 'package:masjid/routing/export_route_files.dart';
 import 'package:masjid/shared/ui/error_page.dart';
 
@@ -96,6 +98,22 @@ class AppRouter {
         pageBuilder: (context, state) =>
             fadeScaleTransitionPage(state, const RecitationPage()),
       ),
+      GoRoute(
+        path: Routes.recitationForm,
+        name: Routes.recitationForm,
+        pageBuilder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return _fade(
+            state,
+            RecitationFormPage(
+              studentId: data['studentId'],
+              studentName: data['studentName'],
+              circleId: data['circleId'],
+              cycleId: data['cycleId'],
+            ),
+          );
+        },
+      ),
     ],
     errorBuilder: (ctx, state) =>
         const ErrorPage(message: 'حدث خطأ أثناء التنقل'),
@@ -119,17 +137,20 @@ class AppRouter {
     if (token == null || token.isEmpty) {
       return isOnLogin ? null : Routes.login;
     }
-    //! REMOVE COMMENT
+    // ! REMOVE COMMENT
     // Already logged in and on login page → redirect by role
-    // if (isOnLogin) {
-    //   return _homeByRole(role);
-    // }
+    if (isOnLogin) {
+      return _homeByRole(role);
+    }
 
     return null; // allow navigation
   }
 
   static String _homeByRole(String? role) {
-    if (role == 'assistant') return Routes.assistantHome;
+    if (role == 'assistant') {
+      return Routes
+          .generalRecitation; //change it to generalRecitation because this is the assitance home
+    }
     return Routes.myCircles; // default: main teacher
   }
 

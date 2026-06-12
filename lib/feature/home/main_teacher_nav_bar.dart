@@ -46,10 +46,10 @@ class MainTeacherNavBar extends StatelessWidget {
                 _NavItem(
                   icon: Icons.menu_book_outlined,
                   activeIcon: Icons.menu_book,
-                  label: 'التسميع السريع',
+                  label: 'التسميع',
                   isActive: currentIndex == 1,
                   onTap: () {
-                    // TODO: navigate to quick recitation
+                    context.go(Routes.generalRecitation);
                   },
                 ),
               ],

@@ -26,16 +26,16 @@ class RecitationFormHeader extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          IconButton(
-            onPressed: onClose,
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
-            icon: Icon(
-              Icons.close_rounded,
-              color: AppColor.outline,
-              size: AppIconSize.md.sp,
-            ),
-          ),
+          // IconButton(
+          //   onPressed: onClose,
+          //   padding: EdgeInsets.zero,
+          //   constraints: const BoxConstraints(),
+          //   icon: Icon(
+          //     Icons.close_rounded,
+          //     color: AppColor.outline,
+          //     size: AppIconSize.md.sp,
+          //   ),
+          // ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -43,19 +43,17 @@ class RecitationFormHeader extends StatelessWidget {
                 Text(
                   studentName,
                   textDirection: TextDirection.rtl,
-                  style: AppTextStyle.headlineMd(context).copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18.sp,
-                  ),
+                  style: AppTextStyle.headlineMd(
+                    context,
+                  ).copyWith(fontWeight: FontWeight.w700),
                 ),
                 AppSpacing.xs.sbH,
                 Text(
                   'تسجيل تسميع جديد',
                   textDirection: TextDirection.rtl,
-                  style: AppTextStyle.bodyMd(context).copyWith(
-                    color: AppColor.outline,
-                    fontSize: 13.sp,
-                  ),
+                  style: AppTextStyle.bodyMd(
+                    context,
+                  ).copyWith(color: AppColor.outline, fontSize: 16.sp),
                 ),
               ],
             ),

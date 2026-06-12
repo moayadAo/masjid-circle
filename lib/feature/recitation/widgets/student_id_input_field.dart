@@ -19,8 +19,11 @@ class StudentIdInputField extends StatelessWidget {
       children: [
         Text(
           'رقم الطالب',
-          style: AppTextStyle.labelLg(context, null, 14.sp)
-              .copyWith(fontWeight: FontWeight.w700),
+          style: AppTextStyle.labelLg(
+            context,
+            null,
+            14.sp,
+          ).copyWith(fontWeight: FontWeight.w700),
         ),
         AppSpacing.sm.sbH,
         TextField(
@@ -34,30 +37,29 @@ class StudentIdInputField extends StatelessWidget {
             filled: true,
             fillColor: Colors.white,
             hintText: 'أدخل رقم الطالب هنا...',
-            hintStyle: AppTextStyle.bodyMd(context).copyWith(
-              color: AppColor.outline,
-              fontSize: 14.sp,
-            ),
-            suffixIcon: Padding(
-              padding: EdgeInsets.all(AppSpacing.xs.r),
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSpacing.xs.w,
-                  vertical: AppSpacing.xs.h,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColor.surfaceVariant,
-                  borderRadius: BorderRadius.circular(AppRadius.xs.r),
-                ),
-                child: Text(
-                  '123',
-                  style: AppTextStyle.bodyMd(context).copyWith(
-                    color: AppColor.outline,
-                    fontSize: 11.sp,
-                  ),
-                ),
-              ),
-            ),
+            hintStyle: AppTextStyle.bodyMd(
+              context,
+            ).copyWith(color: AppColor.outline, fontSize: 14.sp),
+            // suffixIcon: Padding(
+            //   padding: EdgeInsets.all(AppSpacing.xs.r),
+            //   child: Container(
+            //     padding: EdgeInsets.symmetric(
+            //       horizontal: AppSpacing.xs.w,
+            //       vertical: AppSpacing.xs.h,
+            //     ),
+            //     decoration: BoxDecoration(
+            //       color: AppColor.surfaceVariant,
+            //       borderRadius: BorderRadius.circular(AppRadius.xs.r),
+            //     ),
+            //     child: Text(
+            //       '123',
+            //       style: AppTextStyle.bodyMd(context).copyWith(
+            //         color: AppColor.outline,
+            //         fontSize: 11.sp,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppRadius.md.r),
               borderSide: const BorderSide(color: AppColor.border),

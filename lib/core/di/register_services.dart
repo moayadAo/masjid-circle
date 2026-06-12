@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:masjid/feature/attendance/data_source/remote/attendance_service.dart';
 import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
 import 'package:masjid/feature/circles/data_source/remote/circles_service.dart';
+import 'package:masjid/feature/recitation_form/data/remote/surah_local_service.dart';
 
 import '../../feature/recitation/data/remote/recitation_service.dart';
 import '../../feature/recitation_form/data/remote/recitation_form_service.dart';
@@ -42,6 +43,7 @@ void registerServices(GetIt getIt) {
   getIt.registerLazySingleton<RecitationFormService>(
     () => RecitationFormServiceImpl(apiConsumer: getIt()),
   );
+  getIt.registerLazySingleton<SurahLocalService>(() => SurahLocalServiceImpl());
   getIt.registerLazySingleton<AttendanceService>(
     () => AttendanceServiceImpl(apiConsumer: getIt()),
   );

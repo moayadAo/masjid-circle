@@ -48,11 +48,11 @@ class SurahGridItem extends StatelessWidget {
                 style: AppTextStyle.labelLg(
                   context,
                   isSelected ? AppColor.onPrimary : AppColor.outline,
-                  12.sp,
+                  14.sp,
                 ),
               ),
             ),
-            AppSpacing.xs.sbH,
+            AppSpacing.md.sbH,
             Text(
               surah.nameAr,
               textAlign: TextAlign.center,
@@ -61,7 +61,7 @@ class SurahGridItem extends StatelessWidget {
               style: AppTextStyle.labelLg(
                 context,
                 isSelected ? AppColor.primary : null,
-                13.sp,
+                18.sp,
               ),
             ),
           ],

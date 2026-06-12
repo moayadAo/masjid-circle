@@ -5,8 +5,8 @@ class StudentInfoModel {
   final int id;
   final String fullName;
   final String publicCode;
-  final String nickname;
-  final String birthDate;
+  final String? nickname;
+  final String? birthDate;
   final String schoolGrade;
   final String status;
 
@@ -14,8 +14,8 @@ class StudentInfoModel {
     required this.id,
     required this.fullName,
     required this.publicCode,
-    required this.nickname,
-    required this.birthDate,
+    this.nickname,
+    this.birthDate,
     required this.schoolGrade,
     required this.status,
   });
@@ -25,8 +25,8 @@ class StudentInfoModel {
       id: json['id'] as int,
       fullName: json['full_name'] as String,
       publicCode: json['public_code'] as String,
-      nickname: json['nickname'] as String,
-      birthDate: json['birth_date'] as String,
+      nickname: json['nickname'] as String?,
+      birthDate: json['birth_date'] as String?,
       schoolGrade: json['school_grade'] as String,
       status: json['status'] as String,
     );
@@ -88,7 +88,9 @@ class StudentLookupModel {
 
   factory StudentLookupModel.fromJson(Map<String, dynamic> json) {
     return StudentLookupModel(
-      student: StudentInfoModel.fromJson(json['student'] as Map<String, dynamic>),
+      student: StudentInfoModel.fromJson(
+        json['student'] as Map<String, dynamic>,
+      ),
       circle: CircleInfoModel.fromJson(json['circle'] as Map<String, dynamic>),
       cycle: CycleInfoModel.fromJson(json['cycle'] as Map<String, dynamic>),
       totalPoints: json['total_points'] as int,

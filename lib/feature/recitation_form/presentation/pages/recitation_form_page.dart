@@ -1,6 +1,7 @@
 // recitation_form_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:masjid/core/constant/export_theme_files.dart';
 import 'package:masjid/core/design_app/screen_util_ext/screen_util_ext.dart';
 import 'package:masjid/core/design_app/theme/app_colors.dart';
 
@@ -121,87 +122,108 @@ class _RecitationFormViewState extends State<_RecitationFormView> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: Container(
-        padding: EdgeInsets.fromLTRB(
-          AppSpacing.md.w,
-          AppSpacing.md.h,
-          AppSpacing.md.w,
-          AppSpacing.lg.h,
+    return Scaffold(
+      backgroundColor: AppColor.background,
+      appBar: AppBar(
+        backgroundColor: AppColor.primary,
+        elevation: 0,
+        title: Text(
+          'تسميع',
+          style: AppTextStyle.headlineMd(
+            context,
+          ).copyWith(color: AppColor.surfaceContainerHighest),
         ),
-        decoration: BoxDecoration(
-          color: AppColor.background,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.xl.r)),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        child: SafeArea(
-          top: false,
-          child: BlocConsumer<RecitationFormCubit, RecitationFormState>(
-            listener: (context, state) {
-              if (state.submissionStatus == RecitationSubmissionStatus.failure) {
-                AppToast.error(context, state.errorMessage ?? '');
-              } else if (state.submissionStatus == RecitationSubmissionStatus.success) {
-                AppToast.success(context, 'تم تسجيل التسميع بنجاح');
-                Navigator.pop(context, state.result);
-              }
-            },
-            builder: (context, state) {
-              final cubit = context.read<RecitationFormCubit>();
-              final isLoading =
-                  state.submissionStatus == RecitationSubmissionStatus.loading;
+        child: Container(
+          padding: EdgeInsets.fromLTRB(
+            AppSpacing.md.w,
+            AppSpacing.md.h,
+            AppSpacing.md.w,
+            AppSpacing.lg.h,
+          ),
+          decoration: BoxDecoration(
+            color: AppColor.background,
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(AppRadius.xl.r),
+            ),
+          ),
+          child: SafeArea(
+            top: false,
+            child: BlocConsumer<RecitationFormCubit, RecitationFormState>(
+              listener: (context, state) {
+                if (state.submissionStatus ==
+                    RecitationSubmissionStatus.failure) {
+                  AppToast.error(context, state.errorMessage ?? '');
+                } else if (state.submissionStatus ==
+                    RecitationSubmissionStatus.success) {
+                  AppToast.success(context, 'تم تسجيل التسميع بنجاح');
+                  Navigator.pop(context, state.result);
+                }
+              },
+              builder: (context, state) {
+                final cubit = context.read<RecitationFormCubit>();
+                final isLoading =
+                    state.submissionStatus ==
+                    RecitationSubmissionStatus.loading;
 
-              return SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    RecitationFormHeader(
-                      studentName: widget.studentName,
-                      onClose: () => Navigator.pop(context),
-                    ),
-                    AppSpacing.lg.sbH,
-                    RecitationTypeTabBar(
-                      selectedTab: state.selectedTab,
-                      onChanged: cubit.changeTab,
-                    ),
-                    AppSpacing.lg.sbH,
-                    if (state.selectedTab == RecitationFormTab.pages)
-                      PagesRecitationTab(
-                        fromPage: state.fromPage,
-                        toPage: state.toPage,
-                        onFromIncrement: cubit.incrementFromPage,
-                        onFromDecrement: cubit.decrementFromPage,
-                        onToIncrement: cubit.incrementToPage,
-                        onToDecrement: cubit.decrementToPage,
-                      )
-                    else
-                      SurahRecitationTab(
-                        selectedSurah: state.selectedSurah,
-                        onTap: () => _openSurahPicker(context),
+                return SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      RecitationFormHeader(
+                        studentName: widget.studentName,
+                        onClose: () => Navigator.pop(context),
                       ),
-                    AppSpacing.lg.sbH,
-                    RatingSelector(
-                      selected: state.rating,
-                      onChanged: cubit.selectRating,
-                    ),
-                    AppSpacing.lg.sbH,
-                    NotesField(controller: _notesController),
-                    AppSpacing.lg.sbH,
-                    RecitationConfirmButton(
-                      isLoading: isLoading,
-                      onPressed: state.canSubmit
-                          ? () => cubit.submit(
+                      AppSpacing.lg.sbH,
+                      RecitationTypeTabBar(
+                        selectedTab: state.selectedTab,
+                        onChanged: cubit.changeTab,
+                      ),
+                      AppSpacing.lg.sbH,
+                      if (state.selectedTab == RecitationFormTab.pages)
+                        PagesRecitationTab(
+                          fromPage: state.fromPage,
+                          toPage: state.toPage,
+                          onFromIncrement: cubit.incrementFromPage,
+                          onFromDecrement: cubit.decrementFromPage,
+                          onToIncrement: cubit.incrementToPage,
+                          onToDecrement: cubit.decrementToPage,
+                        )
+                      else
+                        SurahRecitationTab(
+                          selectedSurah: state.selectedSurah,
+                          onTap: () => _openSurahPicker(context),
+                        ),
+                      AppSpacing.lg.sbH,
+                      RatingSelector(
+                        selected: state.rating,
+                        onChanged: cubit.selectRating,
+                      ),
+                      AppSpacing.lg.sbH,
+                      NotesField(controller: _notesController),
+                      AppSpacing.lg.sbH,
+                      RecitationConfirmButton(
+                        isLoading: isLoading,
+                        onPressed: state.canSubmit
+                            ? () => cubit.submit(
                                 cycleId: widget.cycleId,
                                 circleId: widget.circleId,
                                 studentId: widget.studentId,
                                 recitedAt: _todayIsoDate,
                                 notes: _notesController.text,
                               )
-                          : null,
-                    ),
-                  ],
-                ),
-              );
-            },
+                            : null,
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),

@@ -11,7 +11,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   bool _isPasswordVisible = false;
   bool get isPasswordVisible => _isPasswordVisible;
-
+  Future<String?> get role async =>
+      await hiveHelper.getData(HiveBoxes.appBox, HiveKey.userRole) as String?;
   AuthCubit({required this.authService, required this.hiveHelper})
     : super(AuthInitialState());
 
