@@ -5,6 +5,7 @@ import 'package:masjid/core/widgets/app_loading_widget.dart';
 import 'package:masjid/feature/attendance/data_source/model/attendance_models.dart';
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_detail_cubit.dart';
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_detail_state.dart';
+import 'package:masjid/feature/attendance/presentation/cubit/attendance_sessions_cubit.dart';
 import 'package:masjid/feature/attendance/widgets/attendance_header_widget.dart';
 import 'package:masjid/feature/attendance/widgets/attendance_record_row_widget.dart';
 import 'package:masjid/feature/attendance/widgets/attendance_session_page_shimmer.dart';
@@ -67,6 +68,12 @@ class _AttendanceSessionPageState extends State<AttendanceSessionPage> {
           listener: (context, state) {
             if (state is SubmitRecordsSuccessState) {
               AppToast.success(context, 'تم حفظ سجل الحضور بنجاح');
+              context
+                  .pop(); // Navigate back to the previous page after successful submission
+              context
+                  .read<
+                    AttendanceSessionsCubit
+                  >(); // Refresh the sessions list on the previous page
             }
             if (state is SubmitRecordsFailureState) {
               AppToast.error(context, state.errMessage);

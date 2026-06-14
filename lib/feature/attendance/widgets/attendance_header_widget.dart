@@ -26,24 +26,40 @@ class AttendanceHeaderWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'المعلم: ${session.openedBy.name}',
-                style: AppTextStyle.bodyMd(
-                  context,
-                ).copyWith(color: AppColor.outline),
-              ),
-              const SizedBox(height: AppSpacing.xs),
-              Text(
-                session.date,
-                style: AppTextStyle.headlineMd(
-                  context,
-                ).copyWith(color: AppColor.primary, fontSize: 16),
-              ),
-            ],
+          // 1. Wrapped the left side in Expanded so it adapts to smaller screens
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize:
+                  MainAxisSize.min, // Keeps the column tight vertically
+              children: [
+                Text(
+                  'المعلم: ${session.openedBy.name}',
+                  style: AppTextStyle.bodyMd(
+                    context,
+                  ).copyWith(color: AppColor.outline),
+                  maxLines:
+                      1, // Prevents text from breaking into multiple lines awkwardly
+                  overflow: TextOverflow
+                      .ellipsis, // Adds '...' if the name is way too long
+                ),
+                const SizedBox(height: AppSpacing.xs),
+                Text(
+                  session.date,
+                  style: AppTextStyle.headlineMd(
+                    context,
+                  ).copyWith(color: AppColor.primary, fontSize: 16),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
+
+          // 2. Added a small gap so the text never touches the container
+          const SizedBox(width: AppSpacing.md),
+
+          // 3. Right side (Total Students Counter) remains fixed
           Container(
             padding: const EdgeInsets.symmetric(
               horizontal: AppSpacing.md,
@@ -54,6 +70,7 @@ class AttendanceHeaderWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppRadius.md),
             ),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   'إجمالي الطلاب',

@@ -28,10 +28,13 @@ class _SplashPageState extends State<SplashPage>
       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
     );
 
-    _slideAnimation = Tween<Offset>(begin: const Offset(0, 0.2), end: Offset.zero)
-        .animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
-    );
+    _slideAnimation =
+        Tween<Offset>(begin: const Offset(0, 0.2), end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: Curves.easeInOut,
+          ),
+        );
 
     _animationController.forward();
 
@@ -75,7 +78,7 @@ class _SplashPageState extends State<SplashPage>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(height: 40),
-                
+
                 // Logo and title section
                 FadeTransition(
                   opacity: _fadeAnimation,
@@ -91,7 +94,9 @@ class _SplashPageState extends State<SplashPage>
                             borderRadius: BorderRadius.circular(28.r),
                             boxShadow: [
                               BoxShadow(
-                                color: const Color(0xFFA6F2D1).withOpacity(0.15),
+                                color: const Color(
+                                  0xFFA6F2D1,
+                                ).withOpacity(0.15),
                                 blurRadius: 30,
                                 spreadRadius: 10,
                               ),
@@ -122,7 +127,7 @@ class _SplashPageState extends State<SplashPage>
 
                         // Tagline
                         Text(
-                          'أثرٌ يبقى.. ونورٌ يزهر',
+                          'أثرٌ يبقى.. وعملٌ يرقى',
                           style: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w400,

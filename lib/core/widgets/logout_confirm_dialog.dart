@@ -129,6 +129,8 @@ class _LogoutConfirmDialog extends StatelessWidget {
                                     context.read<AuthCubit>().logout();
                                   },
                                   style: ElevatedButton.styleFrom(
+                                    alignment: .center,
+                                    padding: .all(0),
                                     backgroundColor: AppColor.error,
                                     foregroundColor: AppColor.onError,
                                     minimumSize: const Size.fromHeight(50),
@@ -144,7 +146,7 @@ class _LogoutConfirmDialog extends StatelessWidget {
                                     style: AppTextStyle.labelLg(
                                       context,
                                       AppColor.onError,
-                                      15,
+                                      14,
                                     ),
                                   ),
                                 );

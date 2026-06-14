@@ -54,7 +54,7 @@ class LoginHeaderWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'نور على نور',
+                'أثرٌ ... يبقى',
                 style: AppTextStyle.headlineLg(
                   context,
                 ).copyWith(color: AppColor.onPrimary),
@@ -62,8 +62,8 @@ class LoginHeaderWidget extends StatelessWidget {
               ),
               const SizedBox(height: AppSpacing.xs),
               Text(
-                'نظام إدارة الحلقات القرآنية. يسر وسهولة في متابعة الحفظ والمراجعة.',
-                style: AppTextStyle.bodyMd(
+                'إلهي أنت مقصودي ورضاك مطلوبي',
+                style: AppTextStyle.headlineMd(
                   context,
                 ).copyWith(color: AppColor.onPrimaryContainer),
                 textAlign: TextAlign.center,

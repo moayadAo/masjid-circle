@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             const SizedBox(height: AppSpacing.xs),
                             Text(
-                              'مرحباً بك مجدداً في بوابة المعلم',
+                              'مرحباً بك مجدداً في تطبيق الأستاذ',
                               style: AppTextStyle.bodyMd(
                                 context,
                               ).copyWith(color: AppColor.outline),
