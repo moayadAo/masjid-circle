@@ -4,25 +4,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9693c73-3d44-4950-b0a0-c0d445ec035e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/data/surahs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+    <list default="true" id="c9693c73-3d44-4950-b0a0-c0d445ec035e" name="Changes" comment="recitation feature without testing">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/di/register_blocs.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/di/register_blocs.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/di/register_services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/di/register_services.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/network/api/end_point.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/network/api/end_point.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/routing/app_router.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routing/app_router.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/routing/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/routing/routes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/masjid.iml" beforeDir="false" afterPath="$PROJECT_DIR$/masjid.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/feature/recitation_form/presentation/cubit/recitation_form_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/feature/recitation_form/presentation/cubit/recitation_form_cubit.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/feature/recitation_form/presentation/pages/recitation_form_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/feature/recitation_form/presentation/pages/recitation_form_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/feature/recitation_form/presentation/widgets/page_counter_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/feature/recitation_form/presentation/widgets/page_counter_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/feature/recitation_form/presentation/widgets/pages_recitation_tab.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/feature/recitation_form/presentation/widgets/pages_recitation_tab.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +77,15 @@
       <option name="presentableId" value="Default" />
       <updated>1781111047151</updated>
     </task>
+    <task id="LOCAL-00001" summary="recitation feature without testing">
+      <option name="closed" value="true" />
+      <created>1781231900015</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1781231900015</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -95,5 +93,9 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
     </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="recitation feature without testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="recitation feature without testing" />
   </component>
 </project>

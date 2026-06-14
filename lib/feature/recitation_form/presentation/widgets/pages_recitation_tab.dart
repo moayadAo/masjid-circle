@@ -12,6 +12,8 @@ class PagesRecitationTab extends StatelessWidget {
   final VoidCallback onFromDecrement;
   final VoidCallback onToIncrement;
   final VoidCallback onToDecrement;
+  final ValueChanged<int> onFromManualChanged;
+  final ValueChanged<int> onToManualChanged;
 
   const PagesRecitationTab({
     super.key,
@@ -21,6 +23,8 @@ class PagesRecitationTab extends StatelessWidget {
     required this.onFromDecrement,
     required this.onToIncrement,
     required this.onToDecrement,
+    required this.onFromManualChanged,
+    required this.onToManualChanged,
   });
 
   @override
@@ -32,6 +36,7 @@ class PagesRecitationTab extends StatelessWidget {
           value: fromPage,
           onIncrement: onFromIncrement,
           onDecrement: onFromDecrement,
+          onManualChanged: onFromManualChanged,
         ),
         AppSpacing.md.sbH,
         PageCounterField(
@@ -39,6 +44,7 @@ class PagesRecitationTab extends StatelessWidget {
           value: toPage,
           onIncrement: onToIncrement,
           onDecrement: onToDecrement,
+          onManualChanged: onToManualChanged,
         ),
       ],
     );
