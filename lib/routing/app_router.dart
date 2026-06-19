@@ -77,7 +77,9 @@ class AppRouter {
             name: Routes.circleDetails,
             pageBuilder: (ctx, state) {
               final circleId = int.parse(state.pathParameters['circleId']!);
-              final circleName = state.uri.queryParameters['name'] ?? '';
+              final circleName = state.extra is String
+                  ? state.extra as String
+                  : state.uri.queryParameters['name'] ?? '';
               return _slide(
                 state,
                 CircleDetailsPage(circleId: circleId, circleName: circleName),

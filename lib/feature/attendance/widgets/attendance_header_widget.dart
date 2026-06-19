@@ -34,7 +34,7 @@ class AttendanceHeaderWidget extends StatelessWidget {
                   MainAxisSize.min, // Keeps the column tight vertically
               children: [
                 Text(
-                  'المعلم: ${session.openedBy.name}',
+                  session.openedBy.name,
                   style: AppTextStyle.bodyMd(
                     context,
                   ).copyWith(color: AppColor.outline),

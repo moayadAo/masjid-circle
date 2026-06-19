@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masjid/core/widgets/app_error_widget.dart';
-import 'package:masjid/core/widgets/app_loading_widget.dart';
 import 'package:masjid/feature/attendance/data_source/model/attendance_models.dart';
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_detail_cubit.dart';
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_detail_state.dart';
@@ -101,6 +100,7 @@ class _AttendanceSessionPageState extends State<AttendanceSessionPage> {
                 : context.read<AttendanceDetailCubit>().session;
 
             if (session == null) return const SizedBox.shrink();
+            final records = session.sortedRecords;
 
             return Column(
               children: [
@@ -113,20 +113,22 @@ class _AttendanceSessionPageState extends State<AttendanceSessionPage> {
                 // ── Students list ─────────────────────────
                 Expanded(
                   child: ListView.separated(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.md,
-                      vertical: AppSpacing.sm,
+                    padding: EdgeInsets.fromLTRB(
+                      AppSpacing.md,
+                      AppSpacing.sm,
+                      AppSpacing.md,
+                      MediaQuery.of(context).padding.bottom + 72,
                     ),
-                    itemCount: session.records.length,
+                    itemCount: records.length,
                     separatorBuilder: (_, __) =>
                         const SizedBox(height: AppSpacing.sm),
                     itemBuilder: (_, i) => AttendanceRecordRowWidget(
-                      record: session.records[i],
+                      record: records[i],
                       onStatusChanged: (newStatus) {
                         context
                             .read<AttendanceDetailCubit>()
                             .changeRecordStatus(
-                              studentId: session.records[i].studentId,
+                              studentId: records[i].studentId,
                               newStatus: newStatus,
                             );
                       },
@@ -171,7 +173,8 @@ class _AttendanceSessionPageState extends State<AttendanceSessionPage> {
                 );
               },
             ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }

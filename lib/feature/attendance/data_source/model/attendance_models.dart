@@ -1,3 +1,5 @@
+import 'package:masjid/feature/attendance/helper/attendance_sort_helper.dart';
+
 // ── Attendance Record ─────────────────────────────────────
 class AttendanceRecordModel {
   final int id;
@@ -28,7 +30,8 @@ class AttendanceRecordModel {
       attendanceSessionId: json['attendance_session_id'] as int,
       studentId: json['student_id'] as int,
       student: AttendanceStudentModel.fromJson(
-          json['student'] as Map<String, dynamic>),
+        json['student'] as Map<String, dynamic>,
+      ),
       status: json['status'] as String,
       checkInTime: json['check_in_time'] as String?,
       checkOutTime: json['check_out_time'] as String?,
@@ -39,12 +42,12 @@ class AttendanceRecordModel {
 
   /// For submitting bulk records
   Map<String, dynamic> toRequestJson() => {
-        'student_id': studentId,
-        'status': status,
-        'note': note,
-        'check_in_time': checkInTime,
-        'check_out_time': checkOutTime,
-      };
+    'student_id': studentId,
+    'status': status,
+    'note': note,
+    'check_in_time': checkInTime,
+    'check_out_time': checkOutTime,
+  };
 }
 
 class AttendanceStudentModel {
@@ -112,15 +115,18 @@ class AttendanceSessionModel {
       scheduleId: json['schedule_id'] as int?,
       date: json['date'] as String,
       openedBy: SessionOpenerModel.fromJson(
-          json['opened_by'] as Map<String, dynamic>),
+        json['opened_by'] as Map<String, dynamic>,
+      ),
       status: json['status'] as String,
       notes: json['notes'] as String?,
       createdAt: json['created_at'] as String,
       records: json['records'] != null
           ? (json['records'] as List)
-              .map((e) => AttendanceRecordModel.fromJson(
-                  e as Map<String, dynamic>))
-              .toList()
+                .map(
+                  (e) =>
+                      AttendanceRecordModel.fromJson(e as Map<String, dynamic>),
+                )
+                .toList()
           : [],
       recordsCount: json['records_count'] as int?,
     );
@@ -139,4 +145,10 @@ class AttendanceSessionModel {
         return status;
     }
   }
+
+  List<AttendanceRecordModel> get sortedRecords =>
+      AttendanceSortHelper.sortByArabicName(
+        records,
+        (record) => record.student.fullName,
+      );
 }

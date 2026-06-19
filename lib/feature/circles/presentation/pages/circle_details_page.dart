@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masjid/core/constant/assets_manager.dart';
 import 'package:masjid/core/widgets/app_error_widget.dart';
-import 'package:masjid/core/widgets/app_loading_widget.dart';
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_sessions_cubit.dart';
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_sessions_state.dart';
 import 'package:masjid/feature/attendance/widgets/add_session_bottom_sheet.dart';
@@ -60,8 +59,8 @@ class _CircleDetailsPageState extends State<CircleDetailsPage>
     super.dispose();
   }
 
-  void _showAddSessionSheet() {
-    showModalBottomSheet(
+  Future<void> _showAddSessionSheet() async {
+    await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
@@ -69,16 +68,23 @@ class _CircleDetailsPageState extends State<CircleDetailsPage>
         value: context.read<AttendanceSessionsCubit>(),
         child: AddSessionBottomSheet(circleId: widget.circleId),
       ),
-    ).then((_) {
-      // After sheet closes, if session was created, navigate to it
-      final cubitState = context.read<AttendanceSessionsCubit>().state;
-      if (cubitState is OpenSessionSuccessState) {
-        context.push(
-          Routes.attendanceSessionPath(cubitState.session.id),
-          extra: cubitState.session,
-        );
-      }
-    });
+    );
+
+    // After sheet closes, if session was created, navigate to it and refresh
+    // the circle sessions list when returning to this page.
+    final cubitState = context.read<AttendanceSessionsCubit>().state;
+    if (cubitState is OpenSessionSuccessState) {
+      await context.push(
+        Routes.attendanceSessionPath(cubitState.session.id),
+        extra: cubitState.session,
+      );
+
+      if (!mounted) return;
+
+      await context.read<AttendanceSessionsCubit>().loadSessions(
+        circleId: widget.circleId,
+      );
+    }
   }
 
   @override

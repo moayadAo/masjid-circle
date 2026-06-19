@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:masjid/core/error/messages/error_message_converter.dart';
 import 'package:masjid/feature/attendance/data_source/model/attendance_models.dart';
 import 'package:masjid/feature/attendance/data_source/remote/attendance_service.dart';
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_sessions_state.dart';
@@ -86,12 +87,17 @@ class AttendanceSessionsCubit extends Cubit<AttendanceSessionsState> {
       notes: notes,
       scheduleId: scheduleId,
     );
-    result.fold((err) => emit(OpenSessionFailureState(errMessage: err)), (
-      session,
-    ) {
-      // Prepend new session to local list
-      _sessions.insert(0, session);
-      emit(OpenSessionSuccessState(session: session));
-    });
+    result.fold(
+      (err) => emit(
+        OpenSessionFailureState(
+          errMessage: ErrorMessageConverter.toArabic(err),
+        ),
+      ),
+      (session) {
+        // Prepend new session to local list
+        _sessions.insert(0, session);
+        emit(OpenSessionSuccessState(session: session));
+      },
+    );
   }
 }

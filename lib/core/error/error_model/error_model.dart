@@ -5,7 +5,8 @@ class ErrorModel {
 
   factory ErrorModel.fromJson(final Map<String, dynamic> json) {
     return ErrorModel(
-      message: json[BodyParameters.ERRORMESSAGE] ?? "no message",
+      message: json['data']['date'][0] ?? "no message",
+      // message: json[BodyParameters.ERRORMESSAGE] ?? "no message",
     );
   }
   String message;
