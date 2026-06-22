@@ -8,6 +8,7 @@ import 'package:masjid/feature/attendance/presentation/cubit/attendance_sessions
 import 'package:masjid/feature/attendance/widgets/attendance_header_widget.dart';
 import 'package:masjid/feature/attendance/widgets/attendance_record_row_widget.dart';
 import 'package:masjid/feature/attendance/widgets/attendance_session_page_shimmer.dart';
+import 'package:masjid/feature/attendance/widgets/attendance_share/attendance_share_button.dart';
 import 'package:masjid/routing/app_router.dart';
 import 'package:masjid/core/constant/export_theme_files.dart';
 
@@ -62,6 +63,24 @@ class _AttendanceSessionPageState extends State<AttendanceSessionPage> {
               context,
             ).copyWith(color: AppColor.primary),
           ),
+          actions: [
+            // ── Share full attendance table as image ──────────
+            BlocBuilder<AttendanceDetailCubit, AttendanceDetailState>(
+              buildWhen: (_, state) =>
+                  state is LoadSessionSuccessState ||
+                  state is RecordStatusChangedState ||
+                  state is SubmitRecordsSuccessState,
+              builder: (context, state) {
+                final session = context.read<AttendanceDetailCubit>().session;
+                if (session == null) return const SizedBox.shrink();
+
+                return Padding(
+                  padding: const EdgeInsets.only(left: AppSpacing.md),
+                  child: AttendanceShareButton(session: session),
+                );
+              },
+            ),
+          ],
         ),
         body: BlocConsumer<AttendanceDetailCubit, AttendanceDetailState>(
           listener: (context, state) {

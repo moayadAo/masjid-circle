@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:masjid/feature/attendance/data_source/remote/attendance_service.dart';
 import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
+import 'package:masjid/feature/circles/data_source/remote/circle_recitations_service.dart';
 import 'package:masjid/feature/circles/data_source/remote/circles_service.dart';
 import 'package:masjid/feature/recitation_form/data/remote/surah_local_service.dart';
 
@@ -49,5 +50,9 @@ void registerServices(GetIt getIt) {
   );
   getIt.registerLazySingleton<CirclesService>(
     () => CirclesServiceImpl(apiConsumer: getIt()),
+  );
+
+  getIt.registerLazySingleton<CircleRecitationsService>(
+    () => CircleRecitationsServiceImpl(apiConsumer: getIt()),
   );
 }

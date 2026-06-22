@@ -25,4 +25,6 @@ class EndPoint {
   /// ********************************             *******************************
   static const String studentLookup = '${BASEURLApi}mobile/v1/students/lookup';
   static const String recitations = '${BASEURLApi}mobile/v1/recitations';
+  static String circleRecitations(int id) =>
+      '${BASEURLApi}mobile/v1/circles/$id/recitations';
 }
