@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masjid/feature/circles/data_source/model/circle_student_model.dart';
 import 'package:masjid/core/constant/export_theme_files.dart';
+import 'package:masjid/routing/app_router.dart';
 
 class StudentListItemWidget extends StatelessWidget {
   final CircleStudentModel student;
@@ -11,7 +12,7 @@ class StudentListItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap ?? () => context.push(Routes.studentProfilePath(student.id)),
       child: Container(
         padding: const EdgeInsets.all(AppSpacing.md),
         decoration: BoxDecoration(
@@ -58,13 +59,12 @@ class StudentListItemWidget extends StatelessWidget {
             // Status badge
             _StudentStatusBadge(status: student.status),
             const SizedBox(width: AppSpacing.sm),
-            //todo: add chevron for better affordance of clickability, but only when ontap on item it is handle(make get studnet details)
             // Chevron
-            // const Icon(
-            //   Icons.chevron_right,
-            //   color: AppColor.outline,
-            //   size: AppIconSize.md,
-            // ),
+            const Icon(
+              Icons.chevron_right,
+              color: AppColor.outline,
+              size: AppIconSize.md,
+            ),
           ],
         ),
       ),

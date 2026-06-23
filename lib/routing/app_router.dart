@@ -1,28 +1,3 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:masjid/feature/auth/presentation/pages/login_page.dart';
-// import 'package:masjid/shared/ui/error_page.dart';
-
-// import 'export_route_files.dart';
-
-// class AppRouter {
-//   static final navigatorKey = GlobalKey<NavigatorState>();
-//   static final router = GoRouter(
-//     navigatorKey: navigatorKey,
-//     initialLocation: Routes.login,
-//     routes: [
-//       GoRoute(
-//         path: Routes.login,
-//         name: Routes.login,
-//         pageBuilder: (context, state) =>
-//             fadeScaleTransitionPage(state, LoginPage()),
-//       ),
-//     ],
-
-//     errorBuilder: (context, state) =>
-//         const ErrorPage(message: 'حدث خطأ أثناء التنقل'),
-//     debugLogDiagnostics: true,
-//   );
-// }
 import 'package:flutter/material.dart';
 import 'package:masjid/core/storage/hive_boxes.dart';
 import 'package:masjid/core/storage/hive_helper.dart';
@@ -37,6 +12,7 @@ import 'package:masjid/feature/recitation/data/models/student_lookup_model.dart'
 import 'package:masjid/feature/recitation/presentation/pages/recitation_page_main_nav.dart';
 import 'package:masjid/feature/recitation_form/presentation/pages/recitation_form_page.dart';
 import 'package:masjid/feature/splash/presentation/pages/splash_page.dart';
+import 'package:masjid/feature/student_profile/presentation/pages/student_profile_page.dart';
 import 'package:masjid/routing/export_route_files.dart';
 import 'package:masjid/shared/ui/error_page.dart';
 
@@ -64,6 +40,15 @@ class AppRouter {
         path: Routes.login,
         name: Routes.login,
         pageBuilder: (ctx, state) => _fade(state, const LoginPage()),
+      ),
+
+      GoRoute(
+        path: Routes.studentProfile,
+        name: Routes.studentProfile,
+        pageBuilder: (ctx, state) {
+          final studentId = int.parse(state.pathParameters['studentId']!);
+          return _slide(state, StudentProfilePage(studentId: studentId));
+        },
       ),
 
       // ── Main Teacher ─────────────────────────────────────────

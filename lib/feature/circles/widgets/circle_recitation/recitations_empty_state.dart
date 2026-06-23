@@ -13,6 +13,8 @@ class RecitationsEmptyState extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 60.h),
       child: Column(
+        mainAxisAlignment: .center,
+        crossAxisAlignment: .center,
         children: [
           Icon(
             Icons.menu_book_outlined,

@@ -5,6 +5,7 @@ import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
 import 'package:masjid/feature/circles/data_source/remote/circle_recitations_service.dart';
 import 'package:masjid/feature/circles/data_source/remote/circles_service.dart';
 import 'package:masjid/feature/recitation_form/data/remote/surah_local_service.dart';
+import 'package:masjid/feature/student_profile/data_source/remote/student_profile_service.dart';
 
 import '../../feature/recitation/data/remote/recitation_service.dart';
 import '../../feature/recitation_form/data/remote/recitation_form_service.dart';
@@ -51,7 +52,9 @@ void registerServices(GetIt getIt) {
   getIt.registerLazySingleton<CirclesService>(
     () => CirclesServiceImpl(apiConsumer: getIt()),
   );
-
+  getIt.registerLazySingleton<StudentProfileService>(
+    () => StudentProfileServiceImpl(apiConsumer: getIt()),
+  );
   getIt.registerLazySingleton<CircleRecitationsService>(
     () => CircleRecitationsServiceImpl(apiConsumer: getIt()),
   );

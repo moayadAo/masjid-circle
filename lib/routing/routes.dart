@@ -19,4 +19,7 @@ class Routes {
 
   static String attendanceSessionPath(int sessionId) =>
       '/attendance-session/$sessionId';
+
+  static const studentProfile = '/student/:studentId';
+  static String studentProfilePath(int studentId) => '/student/$studentId';
 }

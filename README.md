@@ -20,6 +20,17 @@ The application is Arabic-first and all interfaces must be fully RTL.
 
 ---
 
+# Release Notes
+
+## Version 1.1.0
+
+* Bug fixes and stability improvements
+* Added student info feature
+* Improved recitation workflow
+* Added share button support
+
+---
+
 # User Roles
 
 The application contains two different user roles.

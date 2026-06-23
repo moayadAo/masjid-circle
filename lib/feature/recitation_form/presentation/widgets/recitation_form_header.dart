@@ -19,46 +19,58 @@ class RecitationFormHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Close button stays on the physical left, text block on the right,
-    // regardless of the app's text direction (matches the design).
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // IconButton(
-          //   onPressed: onClose,
-          //   padding: EdgeInsets.zero,
-          //   constraints: const BoxConstraints(),
-          //   icon: Icon(
-          //     Icons.close_rounded,
-          //     color: AppColor.outline,
-          //     size: AppIconSize.md.sp,
-          //   ),
-          // ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  studentName,
-                  textDirection: TextDirection.rtl,
-                  style: AppTextStyle.headlineMd(
-                    context,
-                  ).copyWith(fontWeight: FontWeight.w700),
+    return SafeArea(
+      bottom: false,
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Padding(
+          padding: EdgeInsets.only(top: AppSpacing.xs.h),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: AppColor.surfaceContainerLow,
+                  borderRadius: BorderRadius.circular(14.r),
+                  border: Border.all(color: AppColor.outlineVariant),
                 ),
-                AppSpacing.xs.sbH,
-                Text(
-                  'تسجيل تسميع جديد',
-                  textDirection: TextDirection.rtl,
-                  style: AppTextStyle.bodyMd(
-                    context,
-                  ).copyWith(color: AppColor.outline, fontSize: 16.sp),
+                child: IconButton(
+                  onPressed: onClose,
+                  padding: EdgeInsets.all(10.w),
+                  constraints: const BoxConstraints(),
+                  icon: Icon(
+                    Icons.arrow_back_rounded,
+                    color: AppColor.onSurface,
+                    size: AppIconSize.md.sp,
+                  ),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(width: AppSpacing.sm.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      studentName,
+                      textDirection: TextDirection.rtl,
+                      style: AppTextStyle.headlineMd(
+                        context,
+                      ).copyWith(fontWeight: FontWeight.w700),
+                    ),
+                    AppSpacing.xs.sbH,
+                    Text(
+                      'تسجيل تسميع جديد',
+                      textDirection: TextDirection.rtl,
+                      style: AppTextStyle.bodyMd(
+                        context,
+                      ).copyWith(color: AppColor.outline, fontSize: 16.sp),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
