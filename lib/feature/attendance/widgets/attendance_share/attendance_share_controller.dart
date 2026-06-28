@@ -30,12 +30,16 @@ class AttendanceShareController {
     required BuildContext context,
     required AttendanceSessionModel session,
   }) async {
+    final recordSlices = _splitRecords(session.sortedRecords);
     final overlay = Overlay.of(context);
-    final boundaryKey = GlobalKey();
+    final boundaryKeys = List.generate(recordSlices.length, (_) => GlobalKey());
 
     final entry = OverlayEntry(
-      builder: (_) =>
-          _OffstageCapture(boundaryKey: boundaryKey, session: session),
+      builder: (_) => _OffstageCaptureBatch(
+        boundaryKeys: boundaryKeys,
+        session: session,
+        recordSlices: recordSlices,
+      ),
     );
     overlay.insert(entry);
 
@@ -45,39 +49,66 @@ class AttendanceShareController {
       await WidgetsBinding.instance.endOfFrame;
       await WidgetsBinding.instance.endOfFrame;
 
-      final renderObject = boundaryKey.currentContext?.findRenderObject();
-      if (renderObject is! RenderRepaintBoundary) return false;
+      final files = <File>[];
+      for (var index = 0; index < boundaryKeys.length; index++) {
+        final renderObject = boundaryKeys[index].currentContext
+            ?.findRenderObject();
+        if (renderObject is! RenderRepaintBoundary) return false;
 
-      final image = await renderObject.toImage(
-        pixelRatio:
-            2.0, // Capture a larger image for better quality when sharing.
-        // Capture a larger image for better quality when sharing.
-        // The default pixelRatio of 1.0 can produce a blurry image on high-res screens.
-        // Adjust as needed based on testing across different devices.
-      );
-      final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-      if (byteData == null) return false;
+        final image = await renderObject.toImage(pixelRatio: 2.0);
+        final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+        if (byteData == null) return false;
 
-      final pngBytes = byteData.buffer.asUint8List();
-      await _shareBytes(pngBytes, session: session);
+        files.add(
+          await _writeTempImage(
+            byteData.buffer.asUint8List(),
+            session: session,
+            pageIndex: index + 1,
+          ),
+        );
+      }
+
+      await _shareFiles(files, session: session);
       return true;
     } finally {
       entry.remove();
     }
   }
 
-  static Future<void> _shareBytes(
+  static List<List<AttendanceRecordModel>> _splitRecords(
+    List<AttendanceRecordModel> records,
+  ) {
+    if (records.length <= 19) {
+      return [records];
+    }
+
+    final firstPageCount = (records.length / 2).ceil();
+    return [
+      records.sublist(0, firstPageCount),
+      records.sublist(firstPageCount),
+    ];
+  }
+
+  static Future<File> _writeTempImage(
     List<int> bytes, {
     required AttendanceSessionModel session,
+    required int pageIndex,
   }) async {
     final tempDir = await getTemporaryDirectory();
-    final fileName = 'attendance_${session.id}_${session.date}.png';
+    final fileName = 'attendance_${session.id}_${session.date}_p$pageIndex.png';
     final file = File('${tempDir.path}/$fileName');
     await file.writeAsBytes(bytes, flush: true);
 
+    return file;
+  }
+
+  static Future<void> _shareFiles(
+    List<File> files, {
+    required AttendanceSessionModel session,
+  }) async {
     await SharePlus.instance.share(
       ShareParams(
-        files: [XFile(file.path)],
+        files: files.map((file) => XFile(file.path)).toList(),
         text: 'سجل الحضور - ${session.date}',
       ),
     );
@@ -91,8 +122,13 @@ class AttendanceShareController {
 class _OffstageCapture extends StatelessWidget {
   final GlobalKey boundaryKey;
   final AttendanceSessionModel session;
+  final List<AttendanceRecordModel>? records;
 
-  const _OffstageCapture({required this.boundaryKey, required this.session});
+  const _OffstageCapture({
+    required this.boundaryKey,
+    required this.session,
+    this.records,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -103,9 +139,39 @@ class _OffstageCapture extends StatelessWidget {
         color: Colors.transparent,
         child: RepaintBoundary(
           key: boundaryKey,
-          child: AttendanceFullTableCapture(session: session),
+          child: AttendanceFullTableCapture(session: session, records: records),
         ),
       ),
+    );
+  }
+}
+
+class _OffstageCaptureBatch extends StatelessWidget {
+  final List<GlobalKey> boundaryKeys;
+  final AttendanceSessionModel session;
+  final List<List<AttendanceRecordModel>> recordSlices;
+
+  const _OffstageCaptureBatch({
+    required this.boundaryKeys,
+    required this.session,
+    required this.recordSlices,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        for (var index = 0; index < recordSlices.length; index++)
+          Positioned(
+            left: -10000,
+            top: index * 2000,
+            child: _OffstageCapture(
+              boundaryKey: boundaryKeys[index],
+              session: session,
+              records: recordSlices[index],
+            ),
+          ),
+      ],
     );
   }
 }

@@ -231,8 +231,8 @@ class _ColumnLabelsRow extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _ColLabel(icon: Icons.check_circle_outline, label: 'حاضر'),
-                _ColLabel(icon: Icons.cancel_outlined, label: 'غائب'),
                 _ColLabel(icon: Icons.schedule_outlined, label: 'متأخر'),
+                _ColLabel(icon: Icons.cancel_outlined, label: 'غائب'),
                 _ColLabel(icon: Icons.history_outlined, label: 'بعذر'),
               ],
             ),

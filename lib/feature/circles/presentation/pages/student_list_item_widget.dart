@@ -12,7 +12,7 @@ class StudentListItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap ?? () => context.push(Routes.studentProfilePath(student.id)),
+      onTap: () => context.push(Routes.studentProfilePath(student.id)),
       child: Container(
         padding: const EdgeInsets.all(AppSpacing.md),
         decoration: BoxDecoration(
@@ -58,12 +58,15 @@ class StudentListItemWidget extends StatelessWidget {
 
             // Status badge
             _StudentStatusBadge(status: student.status),
-            const SizedBox(width: AppSpacing.sm),
+            const SizedBox(width: AppSpacing.md),
             // Chevron
-            const Icon(
-              Icons.chevron_right,
-              color: AppColor.outline,
-              size: AppIconSize.md,
+            InkWell(
+              onTap: onTap ?? () {},
+              child: const Icon(
+                Icons.chrome_reader_mode_outlined,
+                color: AppColor.inverseSurface,
+                size: AppIconSize.md,
+              ),
             ),
           ],
         ),

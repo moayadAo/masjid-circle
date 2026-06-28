@@ -12,19 +12,19 @@ class AttendanceRecordRowWidget extends StatelessWidget {
     required this.onStatusChanged,
   });
 
-  static const _statuses = ['present', 'absent', 'late', 'excused'];
+  static const _statuses = ['present', 'late', 'absent', 'excused'];
   static const _icons = [
     Icons.check_circle_outline,
-    Icons.cancel_outlined,
     Icons.schedule_outlined,
+    Icons.cancel_outlined,
     Icons.history_outlined,
   ];
 
   static Color _activeColor(String status) {
     return switch (status) {
       'present' => AppColor.hadir,
-      'absent' => AppColor.absent,
       'late' => AppColor.late,
+      'absent' => AppColor.absent,
       'excused' => AppColor.excused,
       _ => AppColor.surfaceVariant,
     };
@@ -33,8 +33,8 @@ class AttendanceRecordRowWidget extends StatelessWidget {
   static Color _activeIconColor(String status) {
     return switch (status) {
       'present' => const Color(0xFF166534),
-      'absent' => const Color(0xFF991B1B),
       'late' => const Color(0xFF92400E),
+      'absent' => const Color(0xFF991B1B),
       'excused' => const Color(0xFF1E40AF),
       _ => AppColor.outline,
     };

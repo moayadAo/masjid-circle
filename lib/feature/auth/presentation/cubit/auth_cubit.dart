@@ -8,6 +8,7 @@ import 'package:masjid/feature/auth/presentation/cubit/auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final AuthService authService;
   final HiveHelper hiveHelper;
+  late int cycleId;
 
   bool _isPasswordVisible = false;
   bool get isPasswordVisible => _isPasswordVisible;
@@ -39,6 +40,7 @@ class AuthCubit extends Cubit<AuthState> {
           HiveKey.token,
           authData.token,
         );
+        cycleId = authData.activeCycle!.id; // Store cycleId in the cubit
         emit(LoginSuccessState(authData: authData));
       },
     );

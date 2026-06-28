@@ -12,12 +12,17 @@ import 'package:masjid/feature/attendance/widgets/attendance_record_row_widget.d
 
 class AttendanceFullTableCapture extends StatelessWidget {
   final AttendanceSessionModel session;
+  final List<AttendanceRecordModel>? records;
 
-  const AttendanceFullTableCapture({super.key, required this.session});
+  const AttendanceFullTableCapture({
+    super.key,
+    required this.session,
+    this.records,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final records = session.sortedRecords;
+    final displayRecords = records ?? session.sortedRecords;
 
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -37,7 +42,7 @@ class AttendanceFullTableCapture extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
                 child: Column(
                   children: [
-                    for (final record in records) ...[
+                    for (final record in displayRecords) ...[
                       AttendanceRecordRowWidget(
                         record: record,
                         onStatusChanged: (_) {},

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masjid/core/constant/export_theme_files.dart';
 import 'package:masjid/core/widgets/app_error_widget.dart';
+import 'package:masjid/feature/auth/presentation/cubit/auth_cubit.dart';
 import 'package:masjid/feature/circles/presentation/cubit/circles_cubit.dart';
 import 'package:masjid/feature/circles/presentation/cubit/circles_state.dart';
 import 'package:masjid/feature/circles/presentation/pages/student_list_item_widget.dart';
 import 'package:masjid/feature/circles/widgets/student_list_item_shimmer.dart';
+import 'package:masjid/routing/app_router.dart';
 
 class StudentsTab extends StatelessWidget {
   final int circleId;
@@ -75,8 +77,21 @@ class StudentsTab extends StatelessWidget {
               itemCount: state.students.length,
               separatorBuilder: (_, __) =>
                   const SizedBox(height: AppSpacing.sm),
-              itemBuilder: (_, index) =>
-                  StudentListItemWidget(student: state.students[index]),
+              itemBuilder: (_, index) => StudentListItemWidget(
+                student: state.students[index],
+                onTap: () {
+                  context.push(
+                    Routes.recitationForm,
+                    extra: {
+                      'studentId': state.students[index].id,
+                      // state.data.student.id,
+                      'studentName': state.students[index].fullName,
+                      'circleId': circleId,
+                      'cycleId': context.read<AuthCubit>().cycleId,
+                    },
+                  );
+                },
+              ),
             ),
           );
         }
