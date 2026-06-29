@@ -42,7 +42,7 @@ class CircleRecitationModel {
   final int? surahId;
   final int? fromAyah;
   final int? toAyah;
-  final int? pagesCount;
+  // final double? pagesCount;
   final String rating; // good | very_good | excellent
   final int? pointsAwarded;
   final String recitedAt;
@@ -63,7 +63,7 @@ class CircleRecitationModel {
     this.surahId,
     this.fromAyah,
     this.toAyah,
-    this.pagesCount,
+    // this.pagesCount,
     required this.rating,
     this.pointsAwarded,
     required this.recitedAt,
@@ -93,7 +93,7 @@ class CircleRecitationModel {
       surahId: json['surah_id'] as int?,
       fromAyah: json['from_ayah'] as int?,
       toAyah: json['to_ayah'] as int?,
-      pagesCount: json['pages_count'] as int?,
+      // pagesCount: json['pages_count'] as double?,
       rating: json['rating'] as String? ?? 'good',
       pointsAwarded: json['points_awarded'] as int?,
       recitedAt: json['recited_at'] as String? ?? '',

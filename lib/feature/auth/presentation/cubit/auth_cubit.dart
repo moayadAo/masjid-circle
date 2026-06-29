@@ -8,7 +8,6 @@ import 'package:masjid/feature/auth/presentation/cubit/auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final AuthService authService;
   final HiveHelper hiveHelper;
-  late int cycleId;
 
   bool _isPasswordVisible = false;
   bool get isPasswordVisible => _isPasswordVisible;
@@ -16,6 +15,10 @@ class AuthCubit extends Cubit<AuthState> {
       await hiveHelper.getData(HiveBoxes.appBox, HiveKey.userRole) as String?;
   AuthCubit({required this.authService, required this.hiveHelper})
     : super(AuthInitialState());
+
+  // ─── get Cycle Id ───────────────────────────────────────
+  Future<int> get cycleId async =>
+      await hiveHelper.getData(HiveBoxes.appBox, HiveKey.cycleId);
 
   // ─── Login ───────────────────────────────────────────────
   Future<void> login({
@@ -40,7 +43,11 @@ class AuthCubit extends Cubit<AuthState> {
           HiveKey.token,
           authData.token,
         );
-        cycleId = authData.activeCycle!.id; // Store cycleId in the cubit
+        await hiveHelper.saveData(
+          HiveBoxes.appBox,
+          HiveKey.cycleId,
+          authData.activeCycle!.id,
+        );
         emit(LoginSuccessState(authData: authData));
       },
     );

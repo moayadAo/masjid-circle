@@ -79,7 +79,10 @@ class StudentsTab extends StatelessWidget {
                   const SizedBox(height: AppSpacing.sm),
               itemBuilder: (_, index) => StudentListItemWidget(
                 student: state.students[index],
-                onTap: () {
+                onTap: () async {
+                  final int resolvedCycleId = await context
+                      .read<AuthCubit>()
+                      .cycleId;
                   context.push(
                     Routes.recitationForm,
                     extra: {
@@ -87,7 +90,7 @@ class StudentsTab extends StatelessWidget {
                       // state.data.student.id,
                       'studentName': state.students[index].fullName,
                       'circleId': circleId,
-                      'cycleId': context.read<AuthCubit>().cycleId,
+                      'cycleId': resolvedCycleId,
                     },
                   );
                 },

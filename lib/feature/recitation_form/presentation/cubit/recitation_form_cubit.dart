@@ -9,10 +9,11 @@ class RecitationFormCubit extends Cubit<RecitationFormState> {
   final RecitationFormService recitationService;
 
   static const int _minPage = 1;
-  static const int _maxPage = 604; // Adjust to your preferred max boundary if higher
+  static const int _maxPage =
+      604; // Adjust to your preferred max boundary if higher
 
   RecitationFormCubit({required this.recitationService})
-      : super(const RecitationFormState());
+    : super(const RecitationFormState());
 
   // ── Tabs ────────────────────────────────────────────────────────────────
 
@@ -96,13 +97,13 @@ class RecitationFormCubit extends Cubit<RecitationFormState> {
     );
 
     response.fold(
-          (errMessage) => emit(
+      (errMessage) => emit(
         state.withStatus(
           status: RecitationSubmissionStatus.failure,
           errorMessage: errMessage,
         ),
       ),
-          (result) => emit(
+      (result) => emit(
         state.withStatus(
           status: RecitationSubmissionStatus.success,
           result: result,

@@ -5,6 +5,7 @@ import 'package:masjid/feature/attendance/presentation/cubit/attendance_detail_c
 import 'package:masjid/feature/attendance/presentation/cubit/attendance_sessions_cubit.dart';
 import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
 import 'package:masjid/feature/auth/presentation/cubit/auth_cubit.dart';
+import 'package:masjid/feature/daily_report/data/remote/daily_report_service.dart';
 
 import '../../feature/recitation/data/remote/recitation_service.dart';
 import '../../feature/recitation/presentation/cubit/recitation_cubit.dart';
@@ -40,6 +41,9 @@ void registerBlocs(GetIt getIt) {
 
   getIt.registerFactory<RecitationCubit>(
     () => RecitationCubit(service: getIt<RecitationService>()),
+  );
+  getIt.registerLazySingleton<DailyReportService>(
+    () => DailyReportServiceImpl(apiConsumer: getIt()),
   );
 
   getIt.registerFactory<RecitationFormCubit>(

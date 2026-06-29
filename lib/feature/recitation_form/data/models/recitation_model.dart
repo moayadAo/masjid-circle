@@ -42,7 +42,7 @@ class RecitationModel {
   final int? surahId;
   final int? fromAyah;
   final int? toAyah;
-  final int? pagesCount;
+  // final int? pagesCount;
   final String rating;
   final int pointsAwarded;
   final String recitedAt;
@@ -62,7 +62,7 @@ class RecitationModel {
     this.surahId,
     this.fromAyah,
     this.toAyah,
-    this.pagesCount,
+    // this.pagesCount,
     required this.rating,
     required this.pointsAwarded,
     required this.recitedAt,
@@ -76,15 +76,19 @@ class RecitationModel {
       circleId: json['circle_id'] as int,
       studentId: json['student_id'] as int,
       teacherId: json['teacher_id'] as int,
-      student: RecitationStudentRef.fromJson(json['student'] as Map<String, dynamic>),
-      teacher: RecitationTeacherRef.fromJson(json['teacher'] as Map<String, dynamic>),
+      student: RecitationStudentRef.fromJson(
+        json['student'] as Map<String, dynamic>,
+      ),
+      teacher: RecitationTeacherRef.fromJson(
+        json['teacher'] as Map<String, dynamic>,
+      ),
       recitationType: json['recitation_type'] as String,
       fromPage: json['from_page'] as int?,
       toPage: json['to_page'] as int?,
       surahId: json['surah_id'] as int?,
       fromAyah: json['from_ayah'] as int?,
       toAyah: json['to_ayah'] as int?,
-      pagesCount: json['pages_count'] as int?,
+      // pagesCount: json['pages_count'] as int?,
       rating: json['rating'] as String,
       pointsAwarded: json['points_awarded'] as int,
       recitedAt: json['recited_at'] as String,

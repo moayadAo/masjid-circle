@@ -5,10 +5,12 @@ import 'package:masjid/feature/circles/presentation/pages/circle_details/circle_
 class CircleDetailsBody extends StatelessWidget {
   final TabController tabController;
   final int circleId;
+  final String circleName;
 
   const CircleDetailsBody({
     super.key,
     required this.tabController,
+    required this.circleName,
     required this.circleId,
   });
 
@@ -17,7 +19,11 @@ class CircleDetailsBody extends StatelessWidget {
     return Column(
       children: [
         const CircleDetailsBanner(),
-        CircleDetailsTabs(tabController: tabController, circleId: circleId),
+        CircleDetailsTabs(
+          tabController: tabController,
+          circleId: circleId,
+          circleName: circleName,
+        ),
       ],
     );
   }

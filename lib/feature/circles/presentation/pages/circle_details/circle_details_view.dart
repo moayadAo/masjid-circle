@@ -93,6 +93,7 @@ class _CircleDetailsViewState extends State<CircleDetailsView>
         body: CircleDetailsBody(
           tabController: _tabController,
           circleId: widget.circleId,
+          circleName: widget.circleName,
         ),
         floatingActionButton: CircleDetailsActionButton(
           isVisible: _tabController.index == 0,

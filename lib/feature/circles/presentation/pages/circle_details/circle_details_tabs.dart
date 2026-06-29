@@ -7,10 +7,12 @@ import 'package:masjid/feature/circles/presentation/pages/circle_recitations_tab
 class CircleDetailsTabs extends StatelessWidget {
   final TabController tabController;
   final int circleId;
+  final String circleName;
 
   const CircleDetailsTabs({
     super.key,
     required this.tabController,
+    required this.circleName,
     required this.circleId,
   });
 
@@ -41,7 +43,10 @@ class CircleDetailsTabs extends StatelessWidget {
               children: [
                 AttendanceSessionsTab(circleId: circleId),
                 StudentsTab(circleId: circleId),
-                CircleRecitationsTab(circleId: circleId),
+                CircleRecitationsTab(
+                  circleId: circleId,
+                  circleName: circleName,
+                ),
               ],
             ),
           ),

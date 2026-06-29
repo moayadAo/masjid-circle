@@ -1,5 +1,6 @@
 class HiveKey {
   static const String token = 'token';
+  static const String cycleId = 'cycle_id';
   static const String isVisited = 'visited';
   static const String userName = 'user_name';
   static const String userId = 'user_id';
