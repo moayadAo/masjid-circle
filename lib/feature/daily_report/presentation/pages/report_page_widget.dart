@@ -172,7 +172,7 @@ class _InfoSummaryBar extends StatelessWidget {
         children: [
           _SummaryItem(label: 'الحلقة', value: circleName),
           _SummaryDivider(),
-          _SummaryItem(label: 'تقرير التسميع لتاريخ', value: reportDate),
+          _SummaryItem(label: 'تقرير التسميع في تاريخ', value: reportDate),
         ],
       ),
     );

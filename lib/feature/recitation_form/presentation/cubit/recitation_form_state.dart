@@ -78,9 +78,15 @@ class RecitationFormState {
       toPage: toPage ?? this.toPage,
       selectedSurah: selectedSurah ?? this.selectedSurah,
       rating: rating ?? this.rating,
-      submissionStatus: submissionStatus,
-      errorMessage: errorMessage,
-      result: result,
+      // ✅ Always reset on any form interaction —
+      //    prevents stale failure state from re-triggering the listener.
+      submissionStatus: RecitationSubmissionStatus.idle,
+      errorMessage: null,
+      result: null,
+
+      // submissionStatus: submissionStatus,
+      // errorMessage: errorMessage,
+      // result: result,
     );
   }
 

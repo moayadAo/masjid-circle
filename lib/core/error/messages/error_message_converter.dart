@@ -15,6 +15,7 @@ class ErrorMessageConverter {
     'Bad request': 'طلب غير صالح',
     'Validation error': 'خطأ في التحقق من البيانات',
     'Unknown error': 'حدث خطأ غير معروف',
+    'This surah is already recited': 'تم تسجيل هذه السورة مسبقًا',
   };
 
   static final Map<String, String> _containsTranslations = {
@@ -39,8 +40,26 @@ class ErrorMessageConverter {
 
     final normalized = removePunctuationMarks(message.trim());
 
+    final pageRangeRegex = RegExp(
+      r'range of pages from (\d+) to (\d+),?\s*already recorded later',
+      caseSensitive: false,
+    );
+
+    final match = pageRangeRegex.firstMatch(normalized);
+
+    if (match != null) {
+      final from = match.group(1)!;
+      final to = match.group(2)!;
+
+      if (from == to) {
+        return 'الصفحة $from مسجلة مسبقًا في تسميع لاحق';
+      }
+
+      return 'الصفحات من $from إلى $to مسجلة مسبقًا في تسميع لاحق';
+    }
+
     for (final entry in _exactTranslations.entries) {
-      log('normalized.toLowerCase() = ${message.toLowerCase()}');
+      log('normalized.toLowerCase() = ${normalized.toLowerCase()}');
       log('entry.key.toLowerCase() = ${entry.key.toLowerCase()}');
 
       if (normalized.toLowerCase() == entry.key.toLowerCase()) {

@@ -1,5 +1,6 @@
 // recitation_form_cubit.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:masjid/core/error/messages/error_message_converter.dart';
 import 'package:masjid/feature/recitation_form/presentation/cubit/recitation_form_state.dart';
 
 import '../../../recitation_form/data/remote/recitation_form_service.dart';
@@ -100,7 +101,7 @@ class RecitationFormCubit extends Cubit<RecitationFormState> {
       (errMessage) => emit(
         state.withStatus(
           status: RecitationSubmissionStatus.failure,
-          errorMessage: errMessage,
+          errorMessage: ErrorMessageConverter.toArabic(errMessage),
         ),
       ),
       (result) => emit(
