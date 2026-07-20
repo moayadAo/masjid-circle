@@ -24,9 +24,14 @@ class ReportShareController {
     required List<DailyReportStudentModel> students,
     required String reportDate,
     required String circleName,
+    required bool showStudentsWithoutRecitation,
   }) async {
+    final visibleStudents = showStudentsWithoutRecitation
+        ? students
+        : students.where((student) => !student.didNotReciteToday).toList();
+
     // Split students into pages of kStudentsPerPage
-    final pages = _chunkStudents(students);
+    final pages = _chunkStudents(visibleStudents);
     final totalPages = pages.length;
     final overlay = Overlay.of(context);
     final List<XFile> imageFiles = [];
@@ -42,7 +47,7 @@ class ReportShareController {
           circleName: circleName,
           pageNumber: pageIndex + 1,
           totalPages: totalPages,
-          totalStudents: students.length,
+          totalStudents: visibleStudents.length,
         ),
       );
 

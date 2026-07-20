@@ -190,7 +190,7 @@ class _SplashPageState extends State<SplashPage>
 
                       // Version text
                       Text(
-                        'الإصدار 1.1.0',
+                        'الإصدار 1.3.0',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,

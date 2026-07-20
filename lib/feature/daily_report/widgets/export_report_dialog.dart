@@ -8,7 +8,7 @@ import 'package:masjid/core/constant/export_theme_files.dart';
 
 class ExportReportDialog extends StatefulWidget {
   /// Called with the selected date string (YYYY-MM-DD) when confirmed.
-  final void Function(String date) onExport;
+  final void Function(String date, bool showStudentsWithoutRecitation) onExport;
 
   const ExportReportDialog({super.key, required this.onExport});
 
@@ -18,6 +18,7 @@ class ExportReportDialog extends StatefulWidget {
 
 class _ExportReportDialogState extends State<ExportReportDialog> {
   late DateTime _selectedDate;
+  bool _showStudentsWithoutRecitation = true;
 
   @override
   void initState() {
@@ -106,6 +107,35 @@ class _ExportReportDialogState extends State<ExportReportDialog> {
               ),
               const SizedBox(height: AppSpacing.md),
 
+              // ── Recitation filter ────────────────────────
+              CheckboxListTile(
+                value: _showStudentsWithoutRecitation,
+                onChanged: (value) {
+                  setState(() {
+                    _showStudentsWithoutRecitation = value ?? true;
+                  });
+                },
+                contentPadding: EdgeInsets.zero,
+                controlAffinity: ListTileControlAffinity.leading,
+                title: Text(
+                  'إظهار الطلاب الذين لم يُسمِّعوا',
+                  style: AppTextStyle.bodyMd(context).copyWith(
+                    color: AppColor.onSurface,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                subtitle: Text(
+                  'عند إلغاء التحديد سيتم إخفاؤهم من التقرير المُصدَّر.',
+                  style: AppTextStyle.bodyMd(context).copyWith(
+                    color: AppColor.onSurfaceVariant,
+                    fontSize: 12,
+                  ),
+                ),
+                activeColor: AppColor.primaryContainer,
+              ),
+              const SizedBox(height: AppSpacing.sm),
+
               // ── Date picker field ─────────────────────────
               GestureDetector(
                 onTap: _pickDate,
@@ -179,7 +209,10 @@ class _ExportReportDialogState extends State<ExportReportDialog> {
                     child: ElevatedButton.icon(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        widget.onExport(_formattedDate);
+                        widget.onExport(
+                          _formattedDate,
+                          _showStudentsWithoutRecitation,
+                        );
                       },
                       icon: const Icon(Icons.ios_share_rounded, size: 18),
                       label: const Text('تصدير ومشاركة'),

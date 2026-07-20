@@ -17,13 +17,14 @@ class AttendanceShareButton extends StatefulWidget {
 class _AttendanceShareButtonState extends State<AttendanceShareButton> {
   bool _isSharing = false;
 
-  Future<void> _handleShare() async {
+  Future<void> _handleShare({required bool includeText}) async {
     if (_isSharing) return;
     setState(() => _isSharing = true);
 
     final success = await AttendanceShareController.captureAndShare(
       context: context,
       session: widget.session,
+      includeStudentDetails: includeText,
     );
 
     if (!mounted) return;
@@ -34,12 +35,58 @@ class _AttendanceShareButtonState extends State<AttendanceShareButton> {
     }
   }
 
+  void _showShareOptions() {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (context) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'اختر طريقة المشاركة',
+              style: AppTextStyle.headlineMd(
+                context,
+              ).copyWith(color: AppColor.onBackground),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 24),
+            _ShareOptionButton(
+              icon: Icons.image_outlined,
+              title: 'جدول فقط',
+              description: 'مشاركة صورة الجدول فقط',
+              onTap: () {
+                Navigator.pop(context);
+                _handleShare(includeText: false);
+              },
+            ),
+            const SizedBox(height: 12),
+            _ShareOptionButton(
+              icon: Icons.info_outline,
+              title: 'جدول مع التفاصيل',
+              description: 'مشاركة الجدول مع أسماء الطلاب والحالة',
+              onTap: () {
+                Navigator.pop(context);
+                _handleShare(includeText: true);
+              },
+            ),
+            const SizedBox(height: 12),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: _handleShare,
+        onTap: _showShareOptions,
         borderRadius: BorderRadius.circular(AppRadius.md),
         child: Container(
           width: 40,
@@ -67,6 +114,63 @@ class _AttendanceShareButtonState extends State<AttendanceShareButton> {
                   color: AppColor.primary,
                   size: AppIconSize.sm,
                 ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ShareOptionButton extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String description;
+  final VoidCallback onTap;
+
+  const _ShareOptionButton({
+    required this.icon,
+    required this.title,
+    required this.description,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: AppColor.outlineVariant,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Icon(icon, color: AppColor.primary, size: 28),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: AppTextStyle.labelLg(context, AppColor.onBackground, null),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      description,
+                      style: AppTextStyle.bodyMd(context).copyWith(color: AppColor.onSurfaceVariant),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

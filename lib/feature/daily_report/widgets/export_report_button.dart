@@ -51,12 +51,18 @@ class _ExportReportButtonBody extends StatelessWidget {
   void _openDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (_) =>
-          ExportReportDialog(onExport: (date) => _onExport(context, date)),
+      builder: (_) => ExportReportDialog(
+        onExport: (date, showStudentsWithoutRecitation) =>
+            _onExport(context, date, showStudentsWithoutRecitation),
+      ),
     );
   }
 
-  Future<void> _onExport(BuildContext context, String date) async {
+  Future<void> _onExport(
+    BuildContext context,
+    String date,
+    bool showStudentsWithoutRecitation,
+  ) async {
     final cubit = context.read<DailyReportCubit>();
 
     // 1. Fetch report data
@@ -81,6 +87,7 @@ class _ExportReportButtonBody extends StatelessWidget {
       students: state.students,
       reportDate: state.reportDate,
       circleName: circleName,
+      showStudentsWithoutRecitation: showStudentsWithoutRecitation,
     );
 
     if (!context.mounted) return;

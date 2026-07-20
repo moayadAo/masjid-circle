@@ -29,6 +29,7 @@ class AttendanceShareController {
   static Future<bool> captureAndShare({
     required BuildContext context,
     required AttendanceSessionModel session,
+    bool includeStudentDetails = false,
   }) async {
     final recordSlices = _splitRecords(session.sortedRecords);
     final overlay = Overlay.of(context);
@@ -68,7 +69,11 @@ class AttendanceShareController {
         );
       }
 
-      await _shareFiles(files, session: session);
+      await _shareFiles(
+        files,
+        session: session,
+        includeStudentDetails: includeStudentDetails,
+      );
       return true;
     } finally {
       entry.remove();
@@ -78,7 +83,7 @@ class AttendanceShareController {
   static List<List<AttendanceRecordModel>> _splitRecords(
     List<AttendanceRecordModel> records,
   ) {
-    if (records.length <= 19) {
+    if (records.length <= 15) {
       return [records];
     }
 
@@ -105,13 +110,36 @@ class AttendanceShareController {
   static Future<void> _shareFiles(
     List<File> files, {
     required AttendanceSessionModel session,
+    bool includeStudentDetails = false,
   }) async {
+    String messageText = 'سجل الحضور - ${session.date}';
+
+    if (includeStudentDetails) {
+      final recordsText = session.sortedRecords
+          .map(
+            (record) =>
+                '${record.student.fullName}: ${_getArabicStatus(record.status)}',
+          )
+          .join('\n');
+      messageText = 'سجل الحضور - ${session.date}\n\n$recordsText';
+    }
+
     await SharePlus.instance.share(
       ShareParams(
         files: files.map((file) => XFile(file.path)).toList(),
-        text: 'سجل الحضور - ${session.date}',
+        text: messageText,
       ),
     );
+  }
+
+  static String _getArabicStatus(String status) {
+    return switch (status) {
+      'present' => 'حاضر ✅',
+      'late' => 'متأخر 🕒',
+      'absent' => 'غائب ❌',
+      'excused' => 'غياب مبرر 📝',
+      _ => status,
+    };
   }
 }
 
