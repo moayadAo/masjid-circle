@@ -6,8 +6,8 @@ import '../../data/models/surah_model.dart';
 /// Which tab of the recitation form is active.
 enum RecitationFormTab { pages, surah }
 
-/// The 3 possible ratings a teacher can give.
-enum RecitationRating { good, veryGood, excellent }
+/// The available ratings a teacher can give.
+enum RecitationRating { good, veryGood, excellent, failed }
 
 extension RecitationRatingApi on RecitationRating {
   /// Value expected by the API (`good` | `very_good` | `excellent`).
@@ -19,6 +19,8 @@ extension RecitationRatingApi on RecitationRating {
         return 'very_good';
       case RecitationRating.excellent:
         return 'excellent';
+      case RecitationRating.failed:
+        return 'failed';
     }
   }
 }

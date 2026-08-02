@@ -19,11 +19,17 @@ class ReportTableHeaderRow extends StatelessWidget {
         children: [
           _HeaderCell(label: 'اسم الطالب', flex: 3, isPrimary: true),
           _VertDivider(),
-          _HeaderCell(label: 'ممتاز', flex: 3, icon: Icons.workspace_premium_rounded),
+          _HeaderCell(
+            label: 'ممتاز',
+            flex: 3,
+            icon: Icons.workspace_premium_rounded,
+          ),
           _VertDivider(),
           _HeaderCell(label: 'جيد جداً', flex: 3),
           _VertDivider(),
           _HeaderCell(label: 'جيد', flex: 3),
+          _VertDivider(),
+          _HeaderCell(label: 'لم ينجح', flex: 3),
           _VertDivider(),
           _HeaderCell(label: 'آخر تسميع', flex: 2),
         ],
@@ -66,7 +72,9 @@ class _HeaderCell extends StatelessWidget {
                 label,
                 style: AppTextStyle.labelLg(
                   context,
-                  isPrimary ? AppColor.primaryContainer : AppColor.onSurfaceVariant,
+                  isPrimary
+                      ? AppColor.primaryContainer
+                      : AppColor.onSurfaceVariant,
                   11,
                 ),
                 maxLines: 1,

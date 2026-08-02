@@ -1,5 +1,6 @@
 // qr_scanner_page.dart
 import 'package:flutter/material.dart';
+import 'package:masjid/core/design_app/app_toast/app_toast.dart';
 import 'package:masjid/core/design_app/typography/style_app.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:masjid/core/design_app/theme/app_colors.dart';
@@ -17,14 +18,31 @@ class _QrScannerPageState extends State<QrScannerPage> {
   final MobileScannerController _controller = MobileScannerController();
   bool _handled = false;
 
-  void _onDetect(BarcodeCapture capture) {
+  void _handleScanResult(String? value) {
     if (_handled) return;
-    final barcode = capture.barcodes.firstOrNull;
-    final value = barcode?.rawValue;
-    if (value == null || value.isEmpty) return;
+
+    final code = value?.trim();
+    if (code == null || code.isEmpty) {
+      if (mounted) {
+        AppToast.warning(context, 'لم يتم قراءة أي رمز QR، حاول مرة أخرى');
+      }
+      return;
+    }
 
     _handled = true;
-    Navigator.pop(context, value);
+    Navigator.pop(context, code);
+  }
+
+  void _onDetect(BarcodeCapture capture) {
+    final barcode = capture.barcodes.firstOrNull;
+    _handleScanResult(barcode?.rawValue);
+  }
+
+  void _onClosePressed() {
+    if (_handled) return;
+
+    _handled = true;
+    Navigator.pop(context, null);
   }
 
   @override
@@ -35,18 +53,31 @@ class _QrScannerPageState extends State<QrScannerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.primary,
-      appBar: AppBar(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (_, __) {
+        if (!_handled) {
+          _handled = true;
+          Navigator.pop(context, null);
+        }
+      },
+      child: Scaffold(
         backgroundColor: AppColor.primary,
-        title: Text(
-          'مسح رمز الطالب',
-          style: AppTextStyle.headlineMd(context).copyWith(color: AppColor.onPrimary),
+        appBar: AppBar(
+          backgroundColor: AppColor.primary,
+          leading: IconButton(
+            onPressed: _onClosePressed,
+            icon: const Icon(Icons.arrow_back_rounded),
+            color: AppColor.onPrimary,
+          ),
+          title: Text(
+            'مسح رمز الطالب',
+            style: AppTextStyle.headlineMd(
+              context,
+            ).copyWith(color: AppColor.onPrimary),
+          ),
         ),
-      ),
-      body: MobileScanner(
-        controller: _controller,
-        onDetect: _onDetect,
+        body: MobileScanner(controller: _controller, onDetect: _onDetect),
       ),
     );
   }

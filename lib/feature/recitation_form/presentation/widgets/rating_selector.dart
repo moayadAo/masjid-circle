@@ -22,14 +22,18 @@ class RatingSelector extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'التقييم',
-          style: AppTextStyle.labelLg(context, null, 14.sp),
-        ),
+        Text('التقييم', style: AppTextStyle.labelLg(context, null, 14.sp)),
         AppSpacing.sm.sbH,
-        Row(
+        Wrap(
+          spacing: AppSpacing.sm.w,
+          runSpacing: AppSpacing.sm.h,
           children: [
-            Expanded(
+            SizedBox(
+              width:
+                  (MediaQuery.of(context).size.width -
+                      2 * AppSpacing.md.w -
+                      2 * AppSpacing.sm.w) /
+                  2,
               child: RatingOptionCard(
                 icon: Icons.check_circle_outline_rounded,
                 label: 'جيد',
@@ -37,8 +41,12 @@ class RatingSelector extends StatelessWidget {
                 onTap: () => onChanged(RecitationRating.good),
               ),
             ),
-            AppSpacing.sm.sbW,
-            Expanded(
+            SizedBox(
+              width:
+                  (MediaQuery.of(context).size.width -
+                      2 * AppSpacing.md.w -
+                      2 * AppSpacing.sm.w) /
+                  2,
               child: RatingOptionCard(
                 icon: Icons.thumb_up_alt_outlined,
                 label: 'جيد جداً',
@@ -46,13 +54,30 @@ class RatingSelector extends StatelessWidget {
                 onTap: () => onChanged(RecitationRating.veryGood),
               ),
             ),
-            AppSpacing.sm.sbW,
-            Expanded(
+            SizedBox(
+              width:
+                  (MediaQuery.of(context).size.width -
+                      2 * AppSpacing.md.w -
+                      2 * AppSpacing.sm.w) /
+                  2,
               child: RatingOptionCard(
                 icon: Icons.star_rounded,
                 label: 'ممتاز',
                 isSelected: selected == RecitationRating.excellent,
                 onTap: () => onChanged(RecitationRating.excellent),
+              ),
+            ),
+            SizedBox(
+              width:
+                  (MediaQuery.of(context).size.width -
+                      2 * AppSpacing.md.w -
+                      2 * AppSpacing.sm.w) /
+                  2,
+              child: RatingOptionCard(
+                icon: Icons.cancel_outlined,
+                label: 'لم ينجح',
+                isSelected: selected == RecitationRating.failed,
+                onTap: () => onChanged(RecitationRating.failed),
               ),
             ),
           ],

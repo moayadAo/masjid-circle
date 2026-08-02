@@ -23,12 +23,12 @@ import '../widgets/surah_picker_bottom_sheet.dart';
 import '../widgets/surah_recitation_tab.dart';
 
 Future<RecitationModel?> showRecitationFormSheet(
-    BuildContext context, {
-      required int studentId,
-      required String studentName,
-      required int circleId,
-      required int cycleId,
-    }) {
+  BuildContext context, {
+  required int studentId,
+  required String studentName,
+  required int circleId,
+  required int cycleId,
+}) {
   return showModalBottomSheet<RecitationModel>(
     context: context,
     isScrollControlled: true,
@@ -91,6 +91,7 @@ class _RecitationFormView extends StatefulWidget {
 
 class _RecitationFormViewState extends State<_RecitationFormView> {
   final TextEditingController _notesController = TextEditingController();
+  DateTime _selectedDate = DateTime.now();
 
   @override
   void dispose() {
@@ -98,11 +99,34 @@ class _RecitationFormViewState extends State<_RecitationFormView> {
     super.dispose();
   }
 
-  String get _todayIsoDate {
+  DateTime _todayOnly() {
     final now = DateTime.now();
-    final month = now.month.toString().padLeft(2, '0');
-    final day = now.day.toString().padLeft(2, '0');
-    return '${now.year}-$month-$day';
+    return DateTime(now.year, now.month, now.day);
+  }
+
+  String get _selectedIsoDate {
+    final date = _selectedDate;
+    final month = date.month.toString().padLeft(2, '0');
+    final day = date.day.toString().padLeft(2, '0');
+    return '${date.year}-$month-$day';
+  }
+
+  Future<void> _pickDate(BuildContext context) async {
+    final today = _todayOnly();
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate.isAfter(today) ? today : _selectedDate,
+      firstDate: DateTime(2020),
+      lastDate: today,
+    );
+
+    if (picked == null) return;
+    if (picked.isAfter(today)) {
+      AppToast.warning(context, 'لا يمكن اختيار تاريخ لاحق ليومنا');
+      return;
+    }
+
+    setState(() => _selectedDate = picked);
   }
 
   Future<void> _openSurahPicker(BuildContext context) async {
@@ -126,7 +150,8 @@ class _RecitationFormViewState extends State<_RecitationFormView> {
       curve: Curves.easeOut,
       // Wrap everything inside a Material widget to satisfy InkWells and inputs
       child: Material(
-        color: Colors.transparent, // Keeps our bottom sheet's original appearance
+        color:
+            Colors.transparent, // Keeps our bottom sheet's original appearance
         child: Container(
           constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.85,
@@ -141,16 +166,20 @@ class _RecitationFormViewState extends State<_RecitationFormView> {
             top: false,
             child: BlocConsumer<RecitationFormCubit, RecitationFormState>(
               listener: (context, state) {
-                if (state.submissionStatus == RecitationSubmissionStatus.failure) {
+                if (state.submissionStatus ==
+                    RecitationSubmissionStatus.failure) {
                   AppToast.error(context, state.errorMessage ?? '');
-                } else if (state.submissionStatus == RecitationSubmissionStatus.success) {
+                } else if (state.submissionStatus ==
+                    RecitationSubmissionStatus.success) {
                   AppToast.success(context, 'تم تسجيل التسميع بنجاح');
                   Navigator.pop(context, state.result);
                 }
               },
               builder: (context, state) {
                 final cubit = context.read<RecitationFormCubit>();
-                final isLoading = state.submissionStatus == RecitationSubmissionStatus.loading;
+                final isLoading =
+                    state.submissionStatus ==
+                    RecitationSubmissionStatus.loading;
 
                 return Column(
                   mainAxisSize: MainAxisSize.min,
@@ -193,6 +222,40 @@ class _RecitationFormViewState extends State<_RecitationFormView> {
                                 onTap: () => _openSurahPicker(context),
                               ),
                             AppSpacing.lg.sbH,
+                            InkWell(
+                              onTap: () => _pickDate(context),
+                              borderRadius: BorderRadius.circular(
+                                AppRadius.md.r,
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: AppSpacing.md.w,
+                                  vertical: AppSpacing.md.h,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: AppColor.surfaceContainerLow,
+                                  borderRadius: BorderRadius.circular(
+                                    AppRadius.md.r,
+                                  ),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.calendar_today_rounded,
+                                      color: AppColor.onSurfaceVariant,
+                                    ),
+                                    AppSpacing.sm.sbW,
+                                    Expanded(
+                                      child: Text(
+                                        'تاريخ التسميع: ${_selectedIsoDate}',
+                                        style: AppTextStyle.bodyLg(context),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            AppSpacing.lg.sbH,
                             RatingSelector(
                               selected: state.rating,
                               onChanged: cubit.selectRating,
@@ -204,12 +267,12 @@ class _RecitationFormViewState extends State<_RecitationFormView> {
                               isLoading: isLoading,
                               onPressed: state.canSubmit
                                   ? () => cubit.submit(
-                                cycleId: widget.cycleId,
-                                circleId: widget.circleId,
-                                studentId: widget.studentId,
-                                recitedAt: _todayIsoDate,
-                                notes: _notesController.text,
-                              )
+                                      cycleId: widget.cycleId,
+                                      circleId: widget.circleId,
+                                      studentId: widget.studentId,
+                                      recitedAt: _selectedIsoDate,
+                                      notes: _notesController.text,
+                                    )
                                   : null,
                             ),
                           ],

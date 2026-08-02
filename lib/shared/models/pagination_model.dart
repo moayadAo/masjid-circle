@@ -3,7 +3,7 @@ class PaginationMeta {
   final int perPage;
   final int total;
   final int lastPage;
-  final int pagesCount;
+  final int? pagesCount;
 
   const PaginationMeta({
     required this.currentPage,
@@ -19,7 +19,9 @@ class PaginationMeta {
       perPage: json['per_page'] as int,
       total: json['total'] as int,
       lastPage: json['last_page'] as int,
-      pagesCount: json['pages_count'] as int,
+      pagesCount: json['pages_count'] != null
+          ? json['pages_count'] as int
+          : null,
     );
   }
 

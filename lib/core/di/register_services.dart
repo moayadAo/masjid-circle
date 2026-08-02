@@ -4,6 +4,7 @@ import 'package:masjid/feature/attendance/data_source/remote/attendance_service.
 import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
 import 'package:masjid/feature/circles/data_source/remote/circle_recitations_service.dart';
 import 'package:masjid/feature/circles/data_source/remote/circles_service.dart';
+import 'package:masjid/feature/examiner/data_source/remote/examiner_service.dart';
 import 'package:masjid/feature/recitation_form/data/remote/surah_local_service.dart';
 import 'package:masjid/feature/student_profile/data_source/remote/student_profile_service.dart';
 
@@ -36,6 +37,10 @@ void registerServices(GetIt getIt) {
   // );
   getIt.registerLazySingleton<AuthService>(
     () => AuthServiceImpl(apiConsumer: getIt()),
+  );
+
+  getIt.registerLazySingleton<ExaminerService>(
+    () => ExaminerServiceImpl(apiConsumer: getIt()),
   );
 
   getIt.registerLazySingleton<RecitationService>(

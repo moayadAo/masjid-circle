@@ -22,18 +22,19 @@ The application is Arabic-first and all interfaces must be fully RTL.
 
 # Release Notes
 
-## Version 1.1.0
+## Version 1.3.0
 
-* Bug fixes and stability improvements
-* Added student info feature
-* Improved recitation workflow
-* Added share button support
+* Added new examiner role flow for QR-based student lookup and Juz exam management
+* Added paginated student and exam lists for examiner workflows
+* Improved recitation form with date selection and new failed rating support
+* Added safer date validation for exam and recitation filters
+* Improved form reset behavior for Juz exam creation
 
 ---
 
 # User Roles
 
-The application contains two different user roles.
+The application contains three different user roles.
 
 ## 1. Main Teacher (Circle Teacher)
 
@@ -53,17 +54,29 @@ The main teacher is responsible for a specific Quran circle and has access to:
 
 The assistant teacher does not manage attendance or circles.
 
-The assistant teacher's only responsibility is assessing student recitations.
+The assistant teacher's responsibility is assessing student recitations and Juz exams.
 
 The assistant teacher can:
 
 * Scan student QR codes
 * Search students using student IDs
 * View student information
-* Record recitations
+* Record recitations with a new failed rating option
 * Conduct Juz exams
 
 The assistant teacher has a much simpler interface than the main teacher.
+
+## 3. Examiner Role
+
+The examiner role is a dedicated workflow for managing students and Juz exams.
+
+The examiner can:
+
+* Browse the mosque student list with pagination
+* Scan QR codes to open a student directly
+* View a student's Juz exam history with pagination
+* Create new Juz exams with a resettable form
+* Filter Juz exam lists by date, rating, and part number
 
 ---
 
@@ -178,6 +191,7 @@ The teacher then selects:
 * Good
 * Very Good
 * Excellent
+* Failed
 
 Optional notes can be added.
 

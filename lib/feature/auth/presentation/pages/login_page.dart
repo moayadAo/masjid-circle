@@ -44,7 +44,10 @@ class _LoginPageState extends State<LoginPage> {
       AppToast.success(context, 'تم تسجيل الدخول بنجاح');
       final roles = state.authData.roles;
       final isAssistant = roles.contains('assistant_teacher');
-      final role = isAssistant ? 'assistant' : 'main';
+      final isExaminer = roles.contains('examiner');
+      final role = isAssistant
+          ? 'assistant'
+          : (isExaminer ? 'examiner' : 'main');
 
       // Persist role for router redirect on cold start
       await getIt<HiveHelper>().saveData(
@@ -57,6 +60,8 @@ class _LoginPageState extends State<LoginPage> {
 
       if (isAssistant) {
         context.go(Routes.generalRecitation);
+      } else if (isExaminer) {
+        context.go(Routes.examinerHome);
       } else {
         context.go(Routes.myCircles);
       }

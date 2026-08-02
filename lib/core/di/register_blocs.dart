@@ -6,6 +6,11 @@ import 'package:masjid/feature/attendance/presentation/cubit/attendance_sessions
 import 'package:masjid/feature/auth/data_source/remote/auth_service.dart';
 import 'package:masjid/feature/auth/presentation/cubit/auth_cubit.dart';
 import 'package:masjid/feature/daily_report/data/remote/daily_report_service.dart';
+import 'package:masjid/feature/examiner/data_source/remote/examiner_service.dart';
+import 'package:masjid/feature/examiner/presentation/cubit/all_juz_exams_cubit.dart';
+import 'package:masjid/feature/examiner/presentation/cubit/examiner_students_cubit.dart';
+import 'package:masjid/feature/examiner/presentation/cubit/juz_exam_form_cubit.dart';
+import 'package:masjid/feature/examiner/presentation/cubit/student_juz_exams_cubit.dart';
 
 import '../../feature/recitation/data/remote/recitation_service.dart';
 import '../../feature/recitation/presentation/cubit/recitation_cubit.dart';
@@ -49,6 +54,20 @@ void registerBlocs(GetIt getIt) {
   getIt.registerFactory<RecitationFormCubit>(
     () =>
         RecitationFormCubit(recitationService: getIt<RecitationFormService>()),
+  );
+  // Examiner Cubits
+  // registerBlocs()
+  getIt.registerFactory<ExaminerStudentsCubit>(
+    () => ExaminerStudentsCubit(examinerService: getIt<ExaminerService>()),
+  );
+  getIt.registerFactory<StudentJuzExamsCubit>(
+    () => StudentJuzExamsCubit(examinerService: getIt<ExaminerService>()),
+  );
+  getIt.registerFactory<AllJuzExamsCubit>(
+    () => AllJuzExamsCubit(examinerService: getIt<ExaminerService>()),
+  );
+  getIt.registerFactory<JuzExamFormCubit>(
+    () => JuzExamFormCubit(examinerService: getIt<ExaminerService>()),
   );
   // // ── Report ────────────────────────────────────────────────────────────────
   // getIt.registerFactory<ReportBloc>(

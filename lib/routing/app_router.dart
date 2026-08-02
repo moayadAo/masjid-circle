@@ -5,6 +5,10 @@ import 'package:masjid/core/di/service_locator.dart';
 import 'package:masjid/core/storage/hive_key.dart';
 import 'package:masjid/feature/circles/presentation/pages/circle_details_page.dart';
 import 'package:masjid/feature/circles/presentation/pages/my_circles_page.dart';
+import 'package:masjid/feature/examiner/data/models/examiner_student_model.dart';
+import 'package:masjid/feature/examiner/presentation/pages/examiner_home_page.dart';
+import 'package:masjid/feature/examiner/presentation/pages/juz_exam_form_page.dart';
+import 'package:masjid/feature/examiner/presentation/pages/student_juz_exams_page.dart';
 import 'package:masjid/feature/home/assistant_home_page.dart';
 import 'package:masjid/feature/attendance/presentation/pages/attendance_session_page.dart';
 import 'package:masjid/feature/auth/presentation/pages/login_page.dart';
@@ -48,6 +52,28 @@ class AppRouter {
         pageBuilder: (ctx, state) {
           final studentId = int.parse(state.pathParameters['studentId']!);
           return _slide(state, StudentProfilePage(studentId: studentId));
+        },
+      ),
+
+      GoRoute(
+        path: Routes.examinerHome,
+        name: Routes.examinerHome,
+        pageBuilder: (ctx, state) => _fade(state, const ExaminerHomePage()),
+      ),
+      GoRoute(
+        path: Routes.studentJuzExams,
+        name: Routes.studentJuzExams,
+        pageBuilder: (ctx, state) {
+          final student = state.extra as ExaminerStudentModel;
+          return _slide(state, StudentJuzExamsPage(student: student));
+        },
+      ),
+      GoRoute(
+        path: Routes.juzExamForm,
+        name: Routes.juzExamForm,
+        pageBuilder: (ctx, state) {
+          final student = state.extra as ExaminerStudentModel;
+          return _fade(state, JuzExamFormPage(student: student));
         },
       ),
 
@@ -159,6 +185,7 @@ class AppRouter {
       return Routes
           .generalRecitation; //change it to generalRecitation because this is the assitance home
     }
+    if (role == 'examiner') return Routes.examinerHome;
     return Routes.myCircles; // default: main teacher
   }
 

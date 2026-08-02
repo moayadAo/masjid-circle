@@ -100,6 +100,14 @@ class ReportStudentRow extends StatelessWidget {
 
             _VerticalDivider(),
 
+            // ── Failed ──────────────────────────────────────
+            _RatingCell(
+              entries: student.recitationsByRating.failed,
+              rating: ReportRating.failed,
+            ),
+
+            _VerticalDivider(),
+
             // ── Last recitation ───────────────────────────
             _Cell(
               flex: 2,

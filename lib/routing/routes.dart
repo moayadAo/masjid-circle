@@ -22,4 +22,9 @@ class Routes {
 
   static const studentProfile = '/student/:studentId';
   static String studentProfilePath(int studentId) => '/student/$studentId';
+
+  // Examiner
+  static const examinerHome = '/examiner-home';
+  static const studentJuzExams = '/examiner-students/:studentId/juz-exams';
+  static const juzExamForm = '/juz-exam-form';
 }

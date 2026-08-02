@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:masjid/core/constant/export_theme_files.dart';
 import 'package:masjid/feature/daily_report/data/model/daily_report_model.dart';
 
-enum ReportRating { excellent, veryGood, good }
+enum ReportRating { excellent, veryGood, good, failed }
 
 class ReportRatingChip extends StatelessWidget {
   final DailyReportRecitationEntry entry;
@@ -20,18 +20,21 @@ class ReportRatingChip extends StatelessWidget {
     ReportRating.excellent => AppColor.tertiaryFixed,
     ReportRating.veryGood => AppColor.secondaryContainer,
     ReportRating.good => AppColor.surfaceContainerHigh,
+    ReportRating.failed => AppColor.errorContainer,
   };
 
   Color get _fg => switch (rating) {
     ReportRating.excellent => AppColor.onTertiaryContainer,
     ReportRating.veryGood => AppColor.onSecondaryContainer,
     ReportRating.good => AppColor.onSurface,
+    ReportRating.failed => AppColor.onErrorContainer,
   };
 
   Color get _border => switch (rating) {
     ReportRating.excellent => AppColor.tertiaryFixedDim,
     ReportRating.veryGood => AppColor.secondaryFixed,
     ReportRating.good => AppColor.outlineVariant,
+    ReportRating.failed => AppColor.error,
   };
 
   IconData? get _icon => switch (rating) {

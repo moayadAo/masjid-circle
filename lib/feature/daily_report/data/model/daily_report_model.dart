@@ -65,17 +65,19 @@ class DailyReportRecitationEntry {
   factory DailyReportRecitationEntry.fromJson(Map<String, dynamic> json) {
     return DailyReportRecitationEntry(
       recitationType: json['recitation_type'] as String? ?? 'pages',
-      pages: (json['pages'] as List<dynamic>?)
-              ?.map((e) => e as int)
-              .toList() ??
+      pages:
+          (json['pages'] as List<dynamic>?)?.map((e) => e as int).toList() ??
           [],
-      surahs: (json['surahs'] as List<dynamic>?)
+      surahs:
+          (json['surahs'] as List<dynamic>?)
               ?.map((e) => DailyReportSurah.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      ayahRanges: (json['ayah_ranges'] as List<dynamic>?)
-              ?.map((e) =>
-                  DailyReportAyahRange.fromJson(e as Map<String, dynamic>))
+      ayahRanges:
+          (json['ayah_ranges'] as List<dynamic>?)
+              ?.map(
+                (e) => DailyReportAyahRange.fromJson(e as Map<String, dynamic>),
+              )
               .toList() ??
           [],
     );
@@ -88,21 +90,26 @@ class DailyReportRecitationsByRating {
   final List<DailyReportRecitationEntry> excellent;
   final List<DailyReportRecitationEntry> veryGood;
   final List<DailyReportRecitationEntry> good;
+  final List<DailyReportRecitationEntry> failed;
 
   const DailyReportRecitationsByRating({
     required this.excellent,
     required this.veryGood,
     required this.good,
+    required this.failed,
   });
 
   bool get hasNoRecitations =>
-      excellent.isEmpty && veryGood.isEmpty && good.isEmpty;
+      excellent.isEmpty && veryGood.isEmpty && good.isEmpty && failed.isEmpty;
 
   factory DailyReportRecitationsByRating.fromJson(Map<String, dynamic> json) {
     List<DailyReportRecitationEntry> _parseList(dynamic raw) =>
         (raw as List<dynamic>?)
-            ?.map((e) => DailyReportRecitationEntry.fromJson(
-                e as Map<String, dynamic>))
+            ?.map(
+              (e) => DailyReportRecitationEntry.fromJson(
+                e as Map<String, dynamic>,
+              ),
+            )
             .where((e) => !e.isEmpty)
             .toList() ??
         [];
@@ -111,6 +118,7 @@ class DailyReportRecitationsByRating {
       excellent: _parseList(json['excellent']),
       veryGood: _parseList(json['very_good']),
       good: _parseList(json['good']),
+      failed: _parseList(json['failed']),
     );
   }
 }
@@ -132,8 +140,7 @@ class DailyReportStudentModel {
     required this.recitationsByRating,
   });
 
-  bool get didNotReciteToday =>
-      recitationsByRating.hasNoRecitations;
+  bool get didNotReciteToday => recitationsByRating.hasNoRecitations;
 
   factory DailyReportStudentModel.fromJson(Map<String, dynamic> json) {
     return DailyReportStudentModel(

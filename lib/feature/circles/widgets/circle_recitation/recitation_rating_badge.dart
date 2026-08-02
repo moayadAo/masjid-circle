@@ -14,8 +14,12 @@ class RecitationRatingBadge extends StatelessWidget {
         return 'ممتاز';
       case 'very_good':
         return 'جيد جداً';
-      default:
+      case 'good':
         return 'جيد';
+      case 'failed':
+        return 'لم ينجح';
+      default:
+        return 'غير محدد';
     }
   }
 
@@ -25,6 +29,10 @@ class RecitationRatingBadge extends StatelessWidget {
         return AppColor.tertiaryContainer;
       case 'very_good':
         return AppColor.secondaryContainer;
+      case 'good':
+        return AppColor.surfaceVariant;
+      case 'failed':
+        return AppColor.error;
       default:
         return AppColor.surfaceContainerHigh;
     }
@@ -36,6 +44,10 @@ class RecitationRatingBadge extends StatelessWidget {
         return AppColor.onTertiary;
       case 'very_good':
         return AppColor.onSecondaryContainer;
+      case 'good':
+        return AppColor.onSurfaceVariant;
+      case 'failed':
+        return AppColor.onError;
       default:
         return AppColor.onSurfaceVariant;
     }
