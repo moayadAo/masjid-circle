@@ -46,20 +46,45 @@ class DailyReportAyahRange {
   }
 }
 
+class DailyReportJuzExam {
+  final int id;
+  final String? nameArabic;
+
+  const DailyReportJuzExam({required this.id, this.nameArabic});
+
+  factory DailyReportJuzExam.fromJson(Map<String, dynamic> json) {
+    return DailyReportJuzExam(
+      id: json['id'] as int,
+      nameArabic: json['name_arabic'] as String? ?? 'جزء ${json['id']}',
+    );
+  }
+  String get name {
+    String name;
+    if (nameArabic != null && nameArabic!.isNotEmpty) {
+      name = nameArabic!;
+    } else {
+      name = 'جزء $id';
+    }
+    return 'اختبار $name';
+  }
+}
+
 /// A single recitation entry within a rating group.
-/// Exactly one of [pages], [surahs], [ayahRanges] will be non-null
+/// Exactly one of [pages], [surahs], [ayahRanges], [juzExams] will be non-null
 /// depending on [recitationType].
 class DailyReportRecitationEntry {
   final String recitationType; // pages | surah | ayah_range
   final List<int> pages;
   final List<DailyReportSurah> surahs;
   final List<DailyReportAyahRange> ayahRanges;
+  final List<DailyReportJuzExam> juzExams;
 
   const DailyReportRecitationEntry({
     required this.recitationType,
     required this.pages,
     required this.surahs,
     required this.ayahRanges,
+    required this.juzExams,
   });
 
   factory DailyReportRecitationEntry.fromJson(Map<String, dynamic> json) {
@@ -80,10 +105,18 @@ class DailyReportRecitationEntry {
               )
               .toList() ??
           [],
+      juzExams:
+          (json['juz_exams'] as List<dynamic>?)
+              ?.map(
+                (e) => DailyReportJuzExam.fromJson(e as Map<String, dynamic>),
+              )
+              .toList() ??
+          [],
     );
   }
 
-  bool get isEmpty => pages.isEmpty && surahs.isEmpty && ayahRanges.isEmpty;
+  bool get isEmpty =>
+      pages.isEmpty && surahs.isEmpty && ayahRanges.isEmpty && juzExams.isEmpty;
 }
 
 class DailyReportRecitationsByRating {

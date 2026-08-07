@@ -96,6 +96,12 @@ class ReportRatingChip extends StatelessWidget {
       final r = entry.ayahRanges.first;
       return '${r.surahNameArabic} (${r.fromAyah}–${r.toAyah})';
     }
+    if (entry.recitationType == 'juz_exam' && entry.juzExams.isNotEmpty) {
+      return entry.juzExams
+          .map((j) => j.name) // j.nameArabic ?? 'جزء ${j.id}')
+          // j.nameArabic ?? 'جزء ${j.id}')
+          .join('، ');
+    }
     return '';
   }
 
